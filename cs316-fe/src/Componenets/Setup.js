@@ -6,7 +6,6 @@ const Setup = () => {
   return (
     <div>
       <div>Setup</div>
-      <Button variant="contained">Default</Button>
     </div>
   );
 };
