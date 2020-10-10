@@ -1,5 +1,5 @@
 import React from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Button,
   Container,
@@ -18,14 +18,21 @@ const useStyles = makeStyles({
     height: "90vh",
     width: "90%",
   },
+  TitleStyle: {
+    variant: "h4",
+    paddingTop: "2vh",
+  },
 });
 
 const Profile = () => {
   const classes = useStyles();
   return (
     <div>
-      <Typography>Profile</Typography>
-      <Paper className={classes.PageStyle}></Paper>
+      <Paper className={classes.PageStyle}>
+        <Typography variant="h4" className={classes.TitleStyle}>
+          Profile
+        </Typography>
+      </Paper>
     </div>
   );
 };
