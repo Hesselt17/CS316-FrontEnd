@@ -9,7 +9,6 @@ import {
   Switch,
   FormControlLabel,
   FormGroup,
-  ListItem,
   Button,
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";

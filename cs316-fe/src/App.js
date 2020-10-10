@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 
-import Setup from "./Componenets/Setup";
 import Navbar from "./Navbar";
 import Home from "./Componenets/Home";
 import Likes from "./Componenets/Likes";
