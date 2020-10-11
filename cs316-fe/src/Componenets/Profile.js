@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import DesignCard from "./DesignCard";
 import {
   Button,
   Container,
+  Card,
   Grid,
   makeStyles,
   Paper,
   Typography,
 } from "@material-ui/core";
 
+//Styling for the Page
 const useStyles = makeStyles({
   PageStyle: {
     marginTop: "3vh",
@@ -17,13 +20,20 @@ const useStyles = makeStyles({
     marginRight: "auto",
     background: "#a6a6a6",
     height: "90vh",
-    width: "90%",
+    width: "95%",
   },
   TitleStyle: {
     paddingTop: "2vh",
     paddingLeft: "2vw",
     color: "White",
     fontWeight: "400",
+  },
+  OuterGridStyle: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
 });
 
@@ -48,14 +58,46 @@ const Profile = () => {
         <Typography variant="h2" className={classes.TitleStyle}>
           Profile
         </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={5}>
-            <Paper>Hey</Paper>
+        <div
+          style={{
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: "5vh",
+          }}
+        >
+          <Grid container spacing={10} className={classes.OuterGridStyle}>
+            <Grid item xs={6}>
+              <Paper style={{ height: "70vh" }}>
+                <Typography variant="h2">Username</Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper style={{ height: "70vh" }}>
+                <Typography variant="h2" style={{ paddingBottom: "2vh" }}>
+                  My Uploads
+                </Typography>
+                <Grid container justify="center">
+                  <Grid item xs={6} justify="center">
+                    <DesignCard />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <DesignCard />
+                  </Grid>
+                </Grid>
+                <Grid container style={{ paddingTop: "2vh" }}>
+                  <Grid item xs={5}>
+                    <DesignCard />
+                  </Grid>
+                  <Grid item xs={2}></Grid>
+                  <Grid item xs={5}>
+                    <DesignCard />
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Grid>
           </Grid>
-          <Grid item xs={5}>
-            <Paper>Hey2</Paper>
-          </Grid>
-        </Grid>
+        </div>
       </Paper>
     </div>
   );
