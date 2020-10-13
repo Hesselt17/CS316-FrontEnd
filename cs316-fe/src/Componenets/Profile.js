@@ -39,18 +39,20 @@ const useStyles = makeStyles({
 
 const Profile = () => {
   const classes = useStyles();
+  const [profData, setprofData] = useState([]);
 
-  /*useEffect(() => {
+  useEffect(() => {
     axios
       .get(`http://vcm-17053.vm.duke.edu:5000/users`)
       .then((res) => {
         const data = res.data;
-        console.log("DATA", data);
+        setprofData(data.result[0]);
+        console.log("DATA", data.result);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);*/
+  }, []);
 
   return (
     <div>
@@ -70,6 +72,10 @@ const Profile = () => {
             <Grid item xs={6}>
               <Paper style={{ height: "70vh" }}>
                 <Typography variant="h2">Username</Typography>
+                <Typography variant="h4">{profData.name}</Typography>
+                <Typography variant="h4">{profData.bio}</Typography>
+                <Typography variant="h4">{profData.score}</Typography>
+                <Typography variant="h4">{profData.wherelive}</Typography>
               </Paper>
             </Grid>
             <Grid item xs={6}>
