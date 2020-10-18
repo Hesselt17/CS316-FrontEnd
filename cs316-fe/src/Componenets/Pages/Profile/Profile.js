@@ -44,7 +44,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://vcm-17053.vm.duke.edu:5000/users/1`)
+      .get(`http://vcm-17053.vm.duke.edu:5000/users/3`)
       .then((res) => {
         const data = res.data;
         setprofData(data.result);
