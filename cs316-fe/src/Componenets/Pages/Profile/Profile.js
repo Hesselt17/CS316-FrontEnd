@@ -72,7 +72,9 @@ const Profile = () => {
           <Grid container spacing={10} className={classes.OuterGridStyle}>
             <Grid item xs={6}>
               <Paper style={{ height: "70vh" }}>
-                <Typography variant="h2">Username</Typography>
+                <Typography variant="h2" style={{ paddingLeft: "1rem" }}>
+                  Username
+                </Typography>
                 <Typography variant="h4">{profData.name}</Typography>
                 <Typography variant="h4">{profData.bio}</Typography>
                 <Typography variant="h4">{profData.score}</Typography>
@@ -81,7 +83,10 @@ const Profile = () => {
             </Grid>
             <Grid item xs={6}>
               <Paper style={{ height: "70vh" }}>
-                <Typography variant="h2" style={{ paddingBottom: "2vh" }}>
+                <Typography
+                  variant="h2"
+                  style={{ paddingLeft: "1rem", paddingBottom: "2vh" }}
+                >
                   My Uploads
                 </Typography>
                 <ProfileUploadLayout />
