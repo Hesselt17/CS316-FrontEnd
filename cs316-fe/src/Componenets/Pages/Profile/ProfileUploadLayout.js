@@ -15,6 +15,7 @@ import image5 from "../../Assets/GilesSingle.JPG";
 import image6 from "../../Assets/SouthgateDouble.JPG";
 import image7 from "../../Assets/RandolphDouble1.JPG";
 import image8 from "../../Assets/TrinityHall.JPG";
+import image9 from "../../Assets/GACR.JPG";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     width: "90%",
-    height: "55vh",
+    height: "60vh",
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)",
@@ -72,6 +73,11 @@ var imageData = [
   {
     img: image8,
     title: "Trinity Hall",
+    author: "Tommy",
+  },
+  {
+    img: image9,
+    title: "GA Common Room",
     author: "Tommy",
   },
 ];

@@ -44,10 +44,10 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://vcm-17053.vm.duke.edu:5000/users`)
+      .get(`http://vcm-17053.vm.duke.edu:5000/users/1`)
       .then((res) => {
         const data = res.data;
-        setprofData(data.result[0]);
+        setprofData(data.result);
         console.log("DATA", data.result);
       })
       .catch((err) => {
@@ -66,23 +66,31 @@ const Profile = () => {
             width: "100%",
             justifyContent: "center",
             alignItems: "center",
-            paddingTop: "5vh",
+            paddingTop: "3vh",
           }}
         >
           <Grid container spacing={10} className={classes.OuterGridStyle}>
             <Grid item xs={6}>
-              <Paper style={{ height: "70vh" }}>
+              <Paper style={{ height: "75vh" }}>
                 <Typography variant="h2" style={{ paddingLeft: "1rem" }}>
-                  Username
+                  {profData.name}
                 </Typography>
-                <Typography variant="h4">{profData.name}</Typography>
-                <Typography variant="h4">{profData.bio}</Typography>
-                <Typography variant="h4">{profData.score}</Typography>
-                <Typography variant="h4">{profData.wherelive}</Typography>
+                <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
+                  {profData.name}
+                </Typography>
+                <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
+                  {profData.bio}
+                </Typography>
+                <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
+                  {profData.score}
+                </Typography>
+                <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
+                  {profData.wherelive}
+                </Typography>
               </Paper>
             </Grid>
             <Grid item xs={6}>
-              <Paper style={{ height: "70vh" }}>
+              <Paper style={{ height: "75vh" }}>
                 <Typography
                   variant="h2"
                   style={{ paddingLeft: "1rem", paddingBottom: "2vh" }}
