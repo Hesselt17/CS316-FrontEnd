@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import DesignCard from "./DesignCard";
 import {
   Button,
   Container,
@@ -11,6 +10,8 @@ import {
   Paper,
   Typography,
 } from "@material-ui/core";
+
+import ProfileUploadLayout from "./ProfileUploadLayout";
 
 //Styling for the Page
 const useStyles = makeStyles({
@@ -83,23 +84,7 @@ const Profile = () => {
                 <Typography variant="h2" style={{ paddingBottom: "2vh" }}>
                   My Uploads
                 </Typography>
-                <Grid container justify="center">
-                  <Grid item xs={6} justify="center">
-                    <DesignCard />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <DesignCard />
-                  </Grid>
-                </Grid>
-                <Grid container style={{ paddingTop: "2vh" }}>
-                  <Grid item xs={5}>
-                    <DesignCard />
-                  </Grid>
-                  <Grid item xs={2}></Grid>
-                  <Grid item xs={5}>
-                    <DesignCard />
-                  </Grid>
-                </Grid>
+                <ProfileUploadLayout />
               </Paper>
             </Grid>
           </Grid>

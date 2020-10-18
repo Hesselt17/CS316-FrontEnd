@@ -18,12 +18,12 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
-    maxHeight: 200,
+    maxWidth: "90%", //maxWidth: 345,
+    //maxHeight: 200,
   },
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    //paddingTop: "56.25%", // 16:9
   },
   expand: {
     transform: "rotate(0deg)",

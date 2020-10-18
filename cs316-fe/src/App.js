@@ -8,7 +8,7 @@ import Likes from "./Componenets/Likes";
 import Explore from "./Componenets/Explore";
 import Community from "./Componenets/Community";
 import Upload from "./Componenets/Upload";
-import Profile from "./Componenets/Profile";
+import Profile from "./Componenets/Pages/Profile/Profile";
 
 function App() {
   return (
