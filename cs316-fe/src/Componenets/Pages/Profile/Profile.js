@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {
+  Avatar,
   Button,
   Container,
   Card,
@@ -44,11 +45,11 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://vcm-17053.vm.duke.edu:5000/users/3`)
+      .get(`http://vcm-17053.vm.duke.edu:5000/users/2`)
       .then((res) => {
         const data = res.data;
         setprofData(data.result);
-        console.log("DATA", data.result);
+        //console.log("DATA", data.result);
       })
       .catch((err) => {
         console.log(err);
@@ -73,20 +74,45 @@ const Profile = () => {
             <Grid item xs={6}>
               <Paper style={{ height: "75vh" }}>
                 <Typography variant="h2" style={{ paddingLeft: "1rem" }}>
-                  {profData.name}
+                  About Me
                 </Typography>
-                <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
-                  {profData.name}
-                </Typography>
-                <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
-                  {profData.bio}
-                </Typography>
-                <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
-                  {profData.score}
-                </Typography>
-                <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
-                  {profData.wherelive}
-                </Typography>
+                <Grid container style={{ paddingTop: "2rem" }}>
+                  <Grid item style={{ paddingLeft: "1rem" }}>
+                    <Avatar
+                      src="/broken-image.jpg"
+                      style={{
+                        width: "300px",
+                        height: "300px",
+                      }}
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    justify="center"
+                    direction="column"
+                    style={{
+                      marginTop: "auto",
+                      marginBottom: "auto",
+                      paddingLeft: "4rem",
+                    }}
+                  >
+                    <Typography variant="h5">Name: {profData.name}</Typography>
+                    <Typography variant="h5">
+                      Score: {profData.score}/5
+                    </Typography>
+                    <Typography variant="h5">
+                      On-Campus Residence: {profData.wherelive}
+                    </Typography>
+                  </Grid>
+                  <Grid container style={{ paddingTop: "10vh" }}>
+                    <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
+                      Bio:
+                    </Typography>
+                    <Typography variant="h5" style={{ paddingLeft: "1rem" }}>
+                      {profData.bio}
+                    </Typography>
+                  </Grid>
+                </Grid>
               </Paper>
             </Grid>
             <Grid item xs={6}>
