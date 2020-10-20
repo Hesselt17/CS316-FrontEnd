@@ -9,6 +9,7 @@ import Explore from "./Componenets/Explore";
 import Community from "./Componenets/Community";
 import Upload from "./Componenets/Upload";
 import Profile from "./Componenets/Pages/Profile/Profile";
+import ProfileEdit from "./Componenets/Pages/Profile/ProfileEdit";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/community" exact component={Community} />
           <Route path="/upload" exact component={Upload} />
           <Route path="/profile" exact component={Profile} />
+          <Route path="/profile/edit" component={ProfileEdit} />
 
           {/*<Route
                 path="/profile"

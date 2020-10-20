@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 
 import ProfileUploadLayout from "./ProfileUploadLayout";
+import ProfileMenu from "./ProfileMenu";
 
 //Styling for the Page
 const useStyles = makeStyles({
@@ -44,8 +45,12 @@ const Profile = () => {
   const [profData, setprofData] = useState([]);
 
   useEffect(() => {
+    var min = 1;
+    var max = 100;
+    var rand = Math.floor(min + Math.random() * (max - min));
+    console.log(rand);
     axios
-      .get(`http://vcm-17053.vm.duke.edu:5000/users/2`)
+      .get(`http://vcm-17053.vm.duke.edu:5000/users/${rand}`)
       .then((res) => {
         const data = res.data;
         setprofData(data.result);
@@ -59,9 +64,17 @@ const Profile = () => {
   return (
     <div>
       <Paper className={classes.PageStyle}>
-        <Typography variant="h2" className={classes.TitleStyle}>
-          Profile
-        </Typography>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography variant="h2" className={classes.TitleStyle}>
+            Profile
+          </Typography>
+          <ProfileMenu />
+        </div>
         <div
           style={{
             width: "100%",
@@ -73,9 +86,24 @@ const Profile = () => {
           <Grid container spacing={10} className={classes.OuterGridStyle}>
             <Grid item xs={6}>
               <Paper style={{ height: "75vh" }}>
-                <Typography variant="h2" style={{ paddingLeft: "1rem" }}>
-                  About Me
-                </Typography>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Typography variant="h2" style={{ paddingLeft: "1rem" }}>
+                    About Me
+                  </Typography>
+                  <Link
+                    to={{
+                      pathname: "/profile/edit/" + profData.uid,
+                      state: { user: profData },
+                    }}
+                  >
+                    Edit
+                  </Link>
+                </div>
                 <Grid container style={{ paddingTop: "2rem" }}>
                   <Grid item style={{ paddingLeft: "1rem" }}>
                     <Avatar
@@ -88,8 +116,6 @@ const Profile = () => {
                   </Grid>
                   <Grid
                     item
-                    justify="center"
-                    direction="column"
                     style={{
                       marginTop: "auto",
                       marginBottom: "auto",
