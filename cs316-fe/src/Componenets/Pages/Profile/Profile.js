@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 
 const Profile = () => {
   const classes = useStyles();
-  const [profData, setprofData] = useState([]);
+  const [currUser, setCurrUser] = useState([]);
 
   useEffect(() => {
     var min = 1;
@@ -44,13 +44,17 @@ const Profile = () => {
       .get(`http://vcm-17053.vm.duke.edu:5000/users/${rand}`)
       .then((res) => {
         const data = res.data;
-        setprofData(data.result);
+        setCurrUser(data.result);
         //console.log("DATA", data.result);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  const onSelectUser = () => {
+    setCurrUser(null);
+  };
 
   return (
     <div>
@@ -88,8 +92,8 @@ const Profile = () => {
                   </Typography>
                   <Link
                     to={{
-                      pathname: "/profile/edit/" + profData.uid,
-                      state: { user: profData },
+                      pathname: "/profile/edit/" + currUser.uid,
+                      state: { user: currUser },
                     }}
                   >
                     Edit
@@ -113,12 +117,12 @@ const Profile = () => {
                       paddingLeft: "4rem",
                     }}
                   >
-                    <Typography variant="h5">Name: {profData.name}</Typography>
+                    <Typography variant="h5">Name: {currUser.name}</Typography>
                     <Typography variant="h5">
-                      Score: {profData.score}/5
+                      Score: {currUser.score}/5
                     </Typography>
                     <Typography variant="h5">
-                      On-Campus Residence: {profData.wherelive}
+                      On-Campus Residence: {currUser.wherelive}
                     </Typography>
                   </Grid>
                   <Grid container style={{ paddingTop: "10vh" }}>
@@ -126,7 +130,7 @@ const Profile = () => {
                       Bio:
                     </Typography>
                     <Typography variant="h5" style={{ paddingLeft: "1rem" }}>
-                      {profData.bio}
+                      {currUser.bio}
                     </Typography>
                   </Grid>
                 </Grid>
