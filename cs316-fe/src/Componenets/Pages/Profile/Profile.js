@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {
-  Avatar,
-  Button,
-  Container,
-  Card,
-  Grid,
-  makeStyles,
-  Paper,
-  Typography,
-} from "@material-ui/core";
+import { Avatar, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 
 import ProfileUploadLayout from "./ProfileUploadLayout";
 import ProfileMenu from "./ProfileMenu";
@@ -48,7 +39,7 @@ const Profile = () => {
     var min = 1;
     var max = 100;
     var rand = Math.floor(min + Math.random() * (max - min));
-    console.log(rand);
+    //console.log(rand);
     axios
       .get(`http://vcm-17053.vm.duke.edu:5000/users/${rand}`)
       .then((res) => {

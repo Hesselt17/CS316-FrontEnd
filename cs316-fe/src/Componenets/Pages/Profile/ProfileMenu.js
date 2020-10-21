@@ -8,8 +8,8 @@ export default function ProfileMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [allUsers, setAllUsers] = useState([]);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
   };
 
   const handleClose = () => {
@@ -38,14 +38,14 @@ export default function ProfileMenu() {
         Select From All Users
       </Button>
       <Menu
-        id="simple-menu"
+        //id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
         {allUsers.map((user) => (
-          <MenuItem key={user.name} onClick={handleClose}>
+          <MenuItem key={user.uid} onClick={handleClose}>
             {user.name}
           </MenuItem>
         ))}
