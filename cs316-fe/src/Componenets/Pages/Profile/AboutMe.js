@@ -29,7 +29,7 @@ const AboutMe = (currUser) => {
             On-Campus Residence: {currUser.wherelive}
           </Typography>
         </Grid>
-        <Grid container style={{ paddingTop: "10vh" }}>
+        <Grid container item style={{ paddingTop: "10vh" }}>
           <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
             Bio:
           </Typography>

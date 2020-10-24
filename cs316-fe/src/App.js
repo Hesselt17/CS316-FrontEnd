@@ -7,7 +7,7 @@ import Home from "./Componenets/Pages/Home/Home";
 import Likes from "./Componenets/Pages/Likes/Likes";
 import Explore from "./Componenets/Pages/Explore/Explore";
 import Community from "./Componenets/Pages/Community/Community";
-import Upload from "./Componenets/Upload";
+import Upload from "./Componenets/Pages/Upload/Upload";
 import Profile from "./Componenets/Pages/Profile/Profile";
 import ProfileEdit from "./Componenets/Pages/Profile/ProfileEdit";
 
