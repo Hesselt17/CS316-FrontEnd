@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   makeStyles,
   Paper,
@@ -19,7 +19,8 @@ import image7 from "../../../Assets/RandolphDouble1.JPG";
 import image8 from "../../../Assets/TrinityHall.JPG";
 import image9 from "../../../Assets/GACR.JPG";
 
-import Backdrop from "../../Backdrop";
+import Backdrop from "../../Backdrop"; //Different from Materail-UI's backdrop
+import ModalDesign from "../../ModalDesign";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,6 +92,18 @@ var imageData = [
 
 const Explore = () => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [design, setDesign] = useState({});
+
+  const handleOpen = (tile) => {
+    console.log(tile.title);
+    setDesign(tile);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div>
       <Backdrop page="Explore">
@@ -105,7 +118,7 @@ const Explore = () => {
           <ListSubheader component="div">December</ListSubheader>
   </GridListTile>*/}
             {imageData.map((tile) => (
-              <GridListTile key={tile.img}>
+              <GridListTile key={tile.img} onClick={() => handleOpen(tile)}>
                 <img src={tile.img} alt={tile.title} />
                 <GridListTileBar
                   title={tile.title}
@@ -121,6 +134,7 @@ const Explore = () => {
                 />
               </GridListTile>
             ))}
+            <ModalDesign open={open} image={design} onClose={handleClose} />
           </GridList>
         </div>
       </Backdrop>
