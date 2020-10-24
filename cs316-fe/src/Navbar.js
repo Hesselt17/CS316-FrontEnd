@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bar: {
     position: "static",
-    background: "slategrey",
+    background: "#005587", //#339898 #1D6363 #005587
   },
   menuButton: {
     marginRight: theme.spacing(2),

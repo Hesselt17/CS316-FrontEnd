@@ -6,15 +6,15 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
 
-import image1 from "../../Assets/BlackwellDouble.JPG";
-import image2 from "../../Assets/BrownDouble.JPG";
-import image3 from "../../Assets/GAD2.JPG";
-import image4 from "../../Assets/RandolphD.JPG";
-import image5 from "../../Assets/GilesSingle.JPG";
-import image6 from "../../Assets/SouthgateDouble.JPG";
-import image7 from "../../Assets/RandolphDouble1.JPG";
-import image8 from "../../Assets/TrinityHall.JPG";
-import image9 from "../../Assets/GACR.JPG";
+import image1 from "../../../Assets/BlackwellDouble.JPG";
+import image2 from "../../../Assets/BrownDouble.JPG";
+import image3 from "../../../Assets/GAD2.JPG";
+import image4 from "../../../Assets/RandolphD.JPG";
+import image5 from "../../../Assets/GilesSingle.JPG";
+import image6 from "../../../Assets/SouthgateDouble.JPG";
+import image7 from "../../../Assets/RandolphDouble1.JPG";
+import image8 from "../../../Assets/TrinityHall.JPG";
+import image9 from "../../../Assets/GACR.JPG";
 
 const useStyles = makeStyles((theme) => ({
   root: {

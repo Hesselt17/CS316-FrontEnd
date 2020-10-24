@@ -6,23 +6,10 @@ import { Avatar, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import ProfileUploadLayout from "./ProfileUploadLayout";
 import ProfileMenu from "./ProfileMenu";
 import AboutMe from "./AboutMe";
+import Backdrop from "../../Backdrop";
 
 //Styling for the Page
 const useStyles = makeStyles({
-  PageStyle: {
-    marginTop: "3vh",
-    marginLeft: "auto",
-    marginRight: "auto",
-    background: "#a6a6a6",
-    height: "90vh",
-    width: "95%",
-  },
-  TitleStyle: {
-    paddingTop: "2vh",
-    paddingLeft: "2vw",
-    color: "White",
-    fontWeight: "400",
-  },
   OuterGridStyle: {
     width: "100%",
     justifyContent: "center",
@@ -59,18 +46,8 @@ const Profile = () => {
 
   return (
     <div>
-      <Paper className={classes.PageStyle}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Typography variant="h2" className={classes.TitleStyle}>
-            Profile
-          </Typography>
-          <ProfileMenu />
-        </div>
+      <ProfileMenu />
+      <Backdrop page="Profile">
         <div
           style={{
             width: "100%",
@@ -81,14 +58,17 @@ const Profile = () => {
         >
           <Grid container spacing={10} className={classes.OuterGridStyle}>
             <Grid item xs={6}>
-              <Paper style={{ height: "75vh" }}>
+              <Paper style={{ height: "75vh", color: "#E2E6ED" }}>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
                   }}
                 >
-                  <Typography variant="h2" style={{ paddingLeft: "1rem" }}>
+                  <Typography
+                    variant="h2"
+                    style={{ paddingLeft: "1rem", color: "#005587" }}
+                  >
                     About Me
                   </Typography>
                   <Link
@@ -104,10 +84,14 @@ const Profile = () => {
               </Paper>
             </Grid>
             <Grid item xs={6}>
-              <Paper style={{ height: "75vh" }}>
+              <Paper style={{ height: "75vh", color: "#E2E6ED" }}>
                 <Typography
                   variant="h2"
-                  style={{ paddingLeft: "1rem", paddingBottom: "2vh" }}
+                  style={{
+                    paddingLeft: "1rem",
+                    paddingBottom: "2vh",
+                    color: "#005587",
+                  }}
                 >
                   My Uploads
                 </Typography>
@@ -116,7 +100,7 @@ const Profile = () => {
             </Grid>
           </Grid>
         </div>
-      </Paper>
+      </Backdrop>
     </div>
   );
 };

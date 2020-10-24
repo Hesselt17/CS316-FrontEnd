@@ -1,8 +1,23 @@
 import React from "react";
 
-import { Avatar, Grid, Typography } from "@material-ui/core";
+import {
+  Avatar,
+  makeStyles,
+  Grid,
+  Typography,
+  withStyles,
+} from "@material-ui/core";
+
+const useStyles = makeStyles({});
+
+const TextTyprograhy = withStyles({
+  root: {
+    color: "#E2E6ED",
+  },
+})(Typography);
 
 const AboutMe = (currUser) => {
+  const classes = useStyles();
   return (
     <div>
       <Grid container style={{ paddingTop: "2rem" }}>
@@ -23,8 +38,10 @@ const AboutMe = (currUser) => {
             paddingLeft: "4rem",
           }}
         >
-          <Typography variant="h5">Name: {currUser.name}</Typography>
-          <Typography variant="h5">Score: {currUser.score}/5</Typography>
+          <TextTyprograhy variant="h5">Name: {currUser.name}</TextTyprograhy>
+          <Typography variant="h5" className={classes.text}>
+            Score: {currUser.score}/5
+          </Typography>
           <Typography variant="h5">
             On-Campus Residence: {currUser.wherelive}
           </Typography>
