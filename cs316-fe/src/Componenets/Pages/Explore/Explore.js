@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     width: "100%",
-    height: "700px",
+    height: "750px",
     backgroundColor: "#F3F2F1", //#E2E6ED, #E5E5E5, #F3F2F1
     alignItems: "center",
     paddingTop: "3vh",

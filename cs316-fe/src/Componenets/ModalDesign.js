@@ -28,8 +28,8 @@ const ModalDesign = (props) => {
   return (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
         className={classes.modal}
         {...props}
         closeAfterTransition
@@ -40,11 +40,14 @@ const ModalDesign = (props) => {
       >
         <Fade in={props.open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">
-              react-transition-group animates me. {props.image.title}
-            </p>
-            <img src={props.image} alt={props.title} />
+            <h2 id="modal-title">{props.image.title}</h2>
+            <p id="modal-description">{props.image.author}</p>
+            <iframe
+              width="50%"
+              height="500"
+              frameborder="0"
+              src="https://momento360.com/e/u/15444867432c4a3797c398608c02bea8?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium>"
+            />
           </div>
         </Fade>
       </Modal>
