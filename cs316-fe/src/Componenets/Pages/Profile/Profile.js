@@ -5,6 +5,7 @@ import { Avatar, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 
 import ProfileUploadLayout from "./ProfileUploadLayout";
 import ProfileMenu from "./ProfileMenu";
+import AboutMe from "./AboutMe";
 
 //Styling for the Page
 const useStyles = makeStyles({
@@ -99,41 +100,7 @@ const Profile = () => {
                     Edit
                   </Link>
                 </div>
-                <Grid container style={{ paddingTop: "2rem" }}>
-                  <Grid item style={{ paddingLeft: "1rem" }}>
-                    <Avatar
-                      src="/broken-image.jpg"
-                      style={{
-                        width: "300px",
-                        height: "300px",
-                      }}
-                    />
-                  </Grid>
-                  <Grid
-                    item
-                    style={{
-                      marginTop: "auto",
-                      marginBottom: "auto",
-                      paddingLeft: "4rem",
-                    }}
-                  >
-                    <Typography variant="h5">Name: {currUser.name}</Typography>
-                    <Typography variant="h5">
-                      Score: {currUser.score}/5
-                    </Typography>
-                    <Typography variant="h5">
-                      On-Campus Residence: {currUser.wherelive}
-                    </Typography>
-                  </Grid>
-                  <Grid container style={{ paddingTop: "10vh" }}>
-                    <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
-                      Bio:
-                    </Typography>
-                    <Typography variant="h5" style={{ paddingLeft: "1rem" }}>
-                      {currUser.bio}
-                    </Typography>
-                  </Grid>
-                </Grid>
+                <AboutMe user={currUser} />
               </Paper>
             </Grid>
             <Grid item xs={6}>

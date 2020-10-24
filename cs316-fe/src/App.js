@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./Navbar";
-import Home from "./Componenets/Home";
-import Likes from "./Componenets/Likes";
-import Explore from "./Componenets/Explore";
-import Community from "./Componenets/Community";
+import Home from "./Componenets/Pages/Home/Home";
+import Likes from "./Componenets/Pages/Likes/Likes";
+import Explore from "./Componenets/Pages/Explore/Explore";
+import Community from "./Componenets/Pages/Community/Community";
 import Upload from "./Componenets/Upload";
 import Profile from "./Componenets/Pages/Profile/Profile";
 import ProfileEdit from "./Componenets/Pages/Profile/ProfileEdit";
