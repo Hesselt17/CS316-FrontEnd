@@ -31,28 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar() {
+export default function Navbar(props) {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
 
   return (
     <div className={classes.root}>
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? "Logout" : "Login"}
-        />
-      </FormGroup>
       <AppBar className={classes.bar} position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
@@ -73,7 +56,7 @@ export default function Navbar() {
           <Button className={classes.title} component={Link} to="/upload">
             <Typography variant="h6">Upload</Typography>
           </Button>
-          {auth && (
+          {props.usrState && (
             <div>
               <IconButton
                 aria-label="account of current user"

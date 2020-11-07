@@ -1,46 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./Navbar";
-import Home from "./Componenets/Pages/Home/Home";
-import Likes from "./Componenets/Pages/Likes/Likes";
-import Explore from "./Componenets/Pages/Explore/Explore";
-import Community from "./Componenets/Pages/Community/Community";
-import Upload from "./Componenets/Pages/Upload/Upload";
-import Profile from "./Componenets/Pages/Profile/Profile";
-import ProfileEdit from "./Componenets/Pages/Profile/ProfileEdit";
+import {
+  Setup,
+  Signup,
+  Login,
+  Home,
+  Likes,
+  Explore,
+  Community,
+  Upload,
+  Profile,
+  ProfileEdit,
+} from "./Componenets/Pages/pageExporter";
+
+import Firebase from "./Componenets/Firebase/firebase";
 
 function App() {
+  const [usrState, setUsrState] = useState({
+    authUsr: null,
+  });
+  console.log(usrState);
+
+  /*
+  setLoginStatus = (login) => {
+    setUsrState({ loggedIn: login });
+  };
+  setUser = (usr) => {
+    setUsrState({ user: usr });
+  };
+*/
+  /**/
+  useEffect(() => {
+    const change = Firebase.auth.onAuthStateChanged((authUsr) => {
+      authUsr ? setUsrState({ authUsr }) : setUsrState({ authUsr: null });
+      return () => change();
+    });
+  }, []);
+
   return (
     <div>
       <BrowserRouter>
-        {/*<SideBar auth={authProps} />*/}
-        <Navbar />
+        <Navbar usrState={usrState.authUsr} />
         <Switch>
+          <Route path="/setup" exact component={Setup} />
+          <Route
+            path="/signup"
+            exact
+            render={(props) => (
+              <Signup {...props} firebase={Firebase} /*auth={usrState}*/ />
+            )}
+          />
+          <Route
+            path="/login"
+            exact
+            render={(props) => (
+              <Login {...props} firebase={Firebase} /*auth={usrState}*/ />
+            )}
+          />
           <Route path="/home" exact component={Home} />
           <Route path="/likes" exact component={Likes} />
           <Route path="/explore" exact component={Explore} />
           <Route path="/community" exact component={Community} />
           <Route path="/upload" exact component={Upload} />
-          <Route path="/profile" exact component={Profile} />
+          <Route
+            path="/profile"
+            exact
+            render={(props) => (
+              <Profile {...props} firebase={Firebase} /*auth={usrState}*/ />
+            )}
+          />
           <Route path="/profile/edit" component={ProfileEdit} />
-
-          {/*<Route
-                path="/profile"
-                exact
-                render={(props) => <Profile {...props} auth={authProps} />}
-              />
-              <Route
-                path="/registration"
-                exact
-                render={(props) => <Registration {...props} auth={authProps} />}
-              />
-              <Route
-                path="/login"
-                exact
-                render={(props) => <Login {...props} auth={authProps} />}
-              />*/}
         </Switch>
       </BrowserRouter>
       {/*<div className="App">

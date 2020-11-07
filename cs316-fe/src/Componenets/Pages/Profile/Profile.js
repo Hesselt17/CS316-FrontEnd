@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Profile = () => {
+const Profile = (props) => {
   const classes = useStyles();
   const [currUser, setCurrUser] = useState([]);
 
@@ -47,7 +47,7 @@ const Profile = () => {
   return (
     <div>
       <ProfileMenu />
-      <Backdrop page="Profile">
+      <Backdrop page="Profile" firebase={props.firebase}>
         <div
           style={{
             width: "100%",

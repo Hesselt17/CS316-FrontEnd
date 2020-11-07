@@ -8,9 +8,10 @@ const Home = () => {
         style={{ marginLeft: "auto", marginRight: "auto", textAlign: "center" }}
       >
         <iframe
+          title="stock"
           width="50%"
           height="500"
-          frameborder="0"
+          frameBorder="0"
           src="https://momento360.com/e/u/15444867432c4a3797c398608c02bea8?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium>"
         />
       </div>
