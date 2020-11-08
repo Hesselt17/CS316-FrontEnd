@@ -64,7 +64,13 @@ function App() {
           <Route path="/likes" exact component={Likes} />
           <Route path="/explore" exact component={Explore} />
           <Route path="/community" exact component={Community} />
-          <Route path="/upload" exact component={Upload} />
+          <Route
+            path="/upload"
+            exact
+            render={(props) => (
+              <Upload {...props} firebase={Firebase} /*auth={usrState}*/ />
+            )}
+          />
           <Route
             path="/profile"
             exact

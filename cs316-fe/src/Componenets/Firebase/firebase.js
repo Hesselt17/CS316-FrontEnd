@@ -2,6 +2,7 @@
 
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/storage";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -19,9 +20,10 @@ class Firebase {
   constructor() {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
+    this.storageRef = app.storage().ref();
   }
-  // *** Auth API ***
 
+  // *** Auth API ***
   register = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
 
@@ -33,6 +35,19 @@ class Firebase {
   resetPassword = (email) => this.auth.sendPasswordResetEmail(email);
 
   updatePassword = (password) => this.auth.currentUser.updatePassword(password);
+
+  // *** Upload API ***
+
+  uploadPic = (file) => {
+    console.log("new File: ", file);
+    var imageRef = this.storageRef.child(`images/${file.name}`);
+    imageRef.put(file).then(function (snapshot) {
+      console.log("Uploaded a blob or file!");
+    });
+    imageRef.getDownloadURL().then(function (downloadURL) {
+      console.log("File available at", downloadURL);
+    });
+  };
 }
 
 export default new Firebase();
