@@ -87,11 +87,11 @@ const Backdrop = (props) => {
           <TextField
             className={classes.filter}
             id="filled-select-currency"
-            select
+            //select
             label="Select"
             //value={currency}
             //onChange={handleChange}
-            helperText="Please select your currency"
+            helperText="Select Filter(s)"
             variant="filled"
           >
             {/*currencies.map((option) => (

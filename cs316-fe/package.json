@@ -10,11 +10,14 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "firebase": "^8.0.0",
+    "photo-sphere-viewer": "^4.0.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.2.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.0"
+    "react-scripts": "^4.0.0",
+    "three": "^0.122.0",
+    "uevent": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

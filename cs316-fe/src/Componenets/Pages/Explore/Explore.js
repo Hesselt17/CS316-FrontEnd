@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
+  Button,
   makeStyles,
   Paper,
   GridList,
@@ -45,55 +46,69 @@ const useStyles = makeStyles((theme) => ({
 var imageData = [
   {
     img: image1,
-    title: "Blackwell Double",
+    title: "BlackwellDouble",
     author: "Tommy",
   },
   {
     img: image2,
-    title: "Brown Double",
+    title: "BrownDouble",
     author: "Tommy",
   },
   {
     img: image3,
-    title: "GA Double",
+    title: "GAD2",
     author: "Tommy",
   },
   {
     img: image4,
-    title: "Randolph Double",
+    title: "RandolphDouble1",
     author: "Tommy",
   },
   {
     img: image5,
-    title: "Giles Single",
+    title: "GilesSingle",
     author: "Tommy",
   },
   {
     img: image6,
-    title: "Southgate Double",
+    title: "SouthgateDouble",
     author: "Tommy",
   },
   {
     img: image7,
-    title: "Randolph Double 2",
+    title: "RandolphD",
     author: "Tommy",
   },
   {
     img: image8,
-    title: "Trinity Hall",
+    title: "TrinityHall",
     author: "Tommy",
   },
   {
     img: image9,
-    title: "GA Common Room",
+    title: "GACR",
     author: "Tommy",
   },
 ];
 
-const Explore = () => {
+const Explore = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [design, setDesign] = useState({});
+  const [imgs, setImgs] = useState([]);
+  const firebaseCaller = props.firebase;
+
+  useEffect(() => {
+    const fetchImgs = async (imageArray) => {
+      console.log(imageArray);
+      var imgUrl = "";
+      for (let i = 0; i < imageArray.length; i++) {
+        imgUrl = await firebaseCaller.renderExplore(imageArray[i].title);
+        setImgs((prevImgs) => [...prevImgs, imgUrl]);
+      }
+    };
+    fetchImgs(imageData);
+  }, []);
 
   const handleOpen = (tile) => {
     console.log(tile.title);
@@ -104,6 +119,7 @@ const Explore = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <div>
       <Backdrop page="Explore">
@@ -117,15 +133,15 @@ const Explore = () => {
             {/*<GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">December</ListSubheader>
   </GridListTile>*/}
-            {imageData.map((tile) => (
-              <GridListTile key={tile.img} onClick={() => handleOpen(tile)}>
-                <img src={tile.img} alt={tile.title} />
+            {imgs.map((tile) => (
+              <GridListTile key={tile} onClick={() => handleOpen(tile)}>
+                <img src={tile} alt={tile} />
                 <GridListTileBar
-                  title={tile.title}
-                  subtitle={<span>by: {tile.author}</span>}
+                  title={tile}
+                  subtitle={<span>By: {tile}</span>}
                   actionIcon={
                     <IconButton
-                      aria-label={`info about ${tile.title}`}
+                      aria-label={`info about ${tile}`}
                       className={classes.icon}
                     >
                       <InfoIcon />

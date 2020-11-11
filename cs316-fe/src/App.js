@@ -22,7 +22,7 @@ function App() {
   const [usrState, setUsrState] = useState({
     authUsr: null,
   });
-  console.log(usrState);
+  //console.log(usrState);
 
   /*
   setLoginStatus = (login) => {
@@ -62,7 +62,13 @@ function App() {
           />
           <Route path="/home" exact component={Home} />
           <Route path="/likes" exact component={Likes} />
-          <Route path="/explore" exact component={Explore} />
+          <Route
+            path="/explore"
+            exact
+            render={(props) => (
+              <Explore {...props} firebase={Firebase} /*auth={usrState}*/ />
+            )}
+          />
           <Route path="/community" exact component={Community} />
           <Route
             path="/upload"

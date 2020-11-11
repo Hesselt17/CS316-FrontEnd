@@ -1,5 +1,5 @@
 //TODO: Explore environment variables
-
+import firebase from "firebase";
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
@@ -18,6 +18,7 @@ const firebaseConfig = {
 
 class Firebase {
   constructor() {
+    //if (!firebase.apps.length) {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
     this.storageRef = app.storage().ref();
@@ -47,6 +48,14 @@ class Firebase {
     imageRef.getDownloadURL().then(function (downloadURL) {
       console.log("File available at", downloadURL);
     });
+  };
+
+  // *** Grab URLs API ***
+  renderExplore = async (imgName) => {
+    var imageRef = this.storageRef.child(`images/${imgName}.JPG`);
+    let imgPromise = await imageRef.getDownloadURL();
+    //console.log(imgPromise);
+    return imgPromise;
   };
 }
 

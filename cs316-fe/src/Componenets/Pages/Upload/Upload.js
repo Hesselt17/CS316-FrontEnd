@@ -50,14 +50,8 @@ const Upload = (props) => {
         Upload
       </Button>
       <div>
-        <strong>Files:</strong>
-        <ul>
-          {file && file.path}
-          {file && file.name}
-          {/*file.map((fileName) => (
-            <li key={fileName}>{file}</li>
-          ))*/}
-        </ul>
+        <strong>File:</strong>
+        {file && file.path}
       </div>
     </div>
   );
