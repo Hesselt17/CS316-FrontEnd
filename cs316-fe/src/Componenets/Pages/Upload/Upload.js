@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Dropzone from "react-dropzone";
-import { Button } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   dropzone: {
@@ -13,9 +14,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const initialProps = {
+  category: "",
+  building: "",
+  roomtype: "",
+  tags: "",
+};
+
 const Upload = (props) => {
   const classes = useStyles();
   const [file, setFile] = useState();
+  const [uploadProps, setUploadProps] = useState(initialProps);
+
+  const [textInput, setTextInput] = useState({
+    avatar: null,
+    bio:
+      "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    email: "",
+    name: "",
+    netid: "hpw97",
+    password: "62VQcpwdF",
+    score: 0,
+    wherelive: "",
+  });
 
   const handleDrop = (acceptedFiles) => {
     console.log(acceptedFiles[0]);
@@ -53,6 +74,22 @@ const Upload = (props) => {
         <strong>File:</strong>
         {file && file.path}
       </div>
+      <TextField
+        className={classes.filter}
+        id="DIYDorm"
+        select
+        label="Select"
+        //value={currency}
+        //onChange={handleChange}
+        helperText="Select Filter(s)"
+        variant="filled"
+      >
+        {/*currencies.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))*/}
+      </TextField>
     </div>
   );
 };

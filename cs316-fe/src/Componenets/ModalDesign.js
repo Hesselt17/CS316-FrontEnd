@@ -40,10 +40,10 @@ const ModalDesign = (props) => {
       >
         <Fade in={props.open}>
           <div className={classes.paper}>
-            <h2 id="modal-title">{props.image.title}</h2>
-            <p id="modal-description">{props.image.author}</p>
+            <h2 id="modal-title">{props.tile.caption}</h2>
+            <p id="modal-description">{props.tile.uid}</p>
             <iframe
-              title={props.image.title}
+              title={props.tile.designid}
               width="350"
               height="400"
               frameBorder="0"

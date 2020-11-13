@@ -1,5 +1,5 @@
 //TODO: Explore environment variables
-import firebase from "firebase";
+//import firebase from "firebase";
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
@@ -48,11 +48,16 @@ class Firebase {
     imageRef.getDownloadURL().then(function (downloadURL) {
       console.log("File available at", downloadURL);
     });
+    //TODO: send to postgres
   };
 
   // *** Grab URLs API ***
   renderExplore = async (imgName) => {
-    var imageRef = this.storageRef.child(`images/${imgName}.JPG`);
+    if (imgName === "test") {
+      var imageRef = this.storageRef.child(`images/${imgName}.mov`);
+    } else {
+      var imageRef = this.storageRef.child(`images/${imgName}.JPG`);
+    }
     let imgPromise = await imageRef.getDownloadURL();
     //console.log(imgPromise);
     return imgPromise;

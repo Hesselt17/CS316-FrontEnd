@@ -85,6 +85,7 @@ const Backdrop = (props) => {
             />
           </div>
           <TextField
+            //TODO: SEARCH BAR -- https://medium.com/@pradityadhitama/simple-search-bar-component-functionality-in-react-6589fda3385d
             className={classes.filter}
             id="filled-select-currency"
             //select

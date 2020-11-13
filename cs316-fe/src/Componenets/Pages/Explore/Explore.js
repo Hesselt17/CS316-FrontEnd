@@ -10,18 +10,10 @@ import {
 } from "@material-ui/core/";
 import InfoIcon from "@material-ui/icons/Info";
 
-import image1 from "../../../Assets/BlackwellDouble.JPG";
-import image2 from "../../../Assets/BrownDouble.JPG";
-import image3 from "../../../Assets/GAD2.JPG";
-import image4 from "../../../Assets/RandolphD.JPG";
-import image5 from "../../../Assets/GilesSingle.JPG";
-import image6 from "../../../Assets/SouthgateDouble.JPG";
-import image7 from "../../../Assets/RandolphDouble1.JPG";
-import image8 from "../../../Assets/TrinityHall.JPG";
-import image9 from "../../../Assets/GACR.JPG";
-
 import Backdrop from "../../Backdrop"; //Different from Materail-UI's backdrop
 import ModalDesign from "../../ModalDesign";
+
+import axiosAPI from "../../Axios/API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,64 +35,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-var imageData = [
-  {
-    img: image1,
-    title: "BlackwellDouble",
-    author: "Tommy",
-  },
-  {
-    img: image2,
-    title: "BrownDouble",
-    author: "Tommy",
-  },
-  {
-    img: image3,
-    title: "GAD2",
-    author: "Tommy",
-  },
-  {
-    img: image4,
-    title: "RandolphDouble1",
-    author: "Tommy",
-  },
-  {
-    img: image5,
-    title: "GilesSingle",
-    author: "Tommy",
-  },
-  {
-    img: image6,
-    title: "SouthgateDouble",
-    author: "Tommy",
-  },
-  {
-    img: image7,
-    title: "RandolphD",
-    author: "Tommy",
-  },
-  {
-    img: image8,
-    title: "TrinityHall",
-    author: "Tommy",
-  },
-  {
-    img: image9,
-    title: "GACR",
-    author: "Tommy",
-  },
-];
-
 const Explore = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [design, setDesign] = useState({});
-  const [imgs, setImgs] = useState([]);
+  const [selected, setSelected] = useState({});
+  const [designs, setDesigns] = useState([]);
   const firebaseCaller = props.firebase;
+  const userID = 46;
 
   useEffect(() => {
+    /*
     const fetchImgs = async (imageArray) => {
-      console.log(imageArray);
+      //console.log(imageArray);
       var imgUrl = "";
       for (let i = 0; i < imageArray.length; i++) {
         imgUrl = await firebaseCaller.renderExplore(imageArray[i].title);
@@ -108,11 +54,26 @@ const Explore = (props) => {
       }
     };
     fetchImgs(imageData);
-  }, []);
+    console.log(imgs[9]);
+    */
+    getImgs();
+  }, []); //http://:vcm@vcm-17053.vm.duke.edu/designs
+
+  const getImgs = () => {
+    axiosAPI.explore
+      .getAllImages()
+      .then((res) => {
+        const data = res.data;
+        console.log("DATA", data.result);
+        setDesigns(data.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleOpen = (tile) => {
-    console.log(tile.title);
-    setDesign(tile);
+    setSelected(tile);
     setOpen(true);
   };
 
@@ -133,12 +94,17 @@ const Explore = (props) => {
             {/*<GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">December</ListSubheader>
   </GridListTile>*/}
-            {imgs.map((tile) => (
-              <GridListTile key={tile} onClick={() => handleOpen(tile)}>
-                <img src={tile} alt={tile} />
+            {designs.map((tile) => (
+              <GridListTile key={tile.designid}>
+                <img
+                  src={tile.photo}
+                  alt={tile.uid}
+                  onClick={() => handleOpen(tile)}
+                />
                 <GridListTileBar
-                  title={tile}
-                  subtitle={<span>By: {tile}</span>}
+                  title={tile.caption}
+                  subtitle={<span>By: {tile.uid}</span>}
+                  onClick={() => handleOpen(tile)}
                   actionIcon={
                     <IconButton
                       aria-label={`info about ${tile}`}
@@ -150,8 +116,14 @@ const Explore = (props) => {
                 />
               </GridListTile>
             ))}
-            <ModalDesign open={open} image={design} onClose={handleClose} />
+            <ModalDesign open={open} design={selected} onClose={handleClose} />
           </GridList>
+          {/*<video
+            src={designs[9]}
+            type="video/mp4"
+            style={{ width: "240px", height: "240px" }}
+            controls
+          ></video>*/}
         </div>
       </Backdrop>
     </div>
