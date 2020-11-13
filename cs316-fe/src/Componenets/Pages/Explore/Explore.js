@@ -116,7 +116,7 @@ const Explore = (props) => {
                 />
               </GridListTile>
             ))}
-            <ModalDesign open={open} design={selected} onClose={handleClose} />
+            <ModalDesign open={open} tile={selected} onClose={handleClose} />
           </GridList>
           {/*<video
             src={designs[9]}
