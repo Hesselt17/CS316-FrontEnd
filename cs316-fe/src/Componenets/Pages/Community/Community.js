@@ -46,7 +46,7 @@ const Community = (props) => {
   }, []); //http://:vcm@vcm-17053.vm.duke.edu/designs
 
   const getCommunity = () => {
-    axiosAPI.community
+    axiosAPI.users
       .getAllUsers()
       .then((res) => {
         const data = res.data;

@@ -49,6 +49,18 @@ const Upload = (props) => {
     props.firebase.uploadPic(file);
   };
 
+  const submitEdits = () => {
+    axios
+      .get(`http://vcm@vcm-17053.vm.duke.edu/designs/46`, textInput)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div>
       <div>Upload</div>

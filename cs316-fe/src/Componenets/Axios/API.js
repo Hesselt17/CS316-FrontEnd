@@ -6,14 +6,25 @@ const axiosAPI = axios.create({
 });
 
 export default {
+  users: {
+    getUserInfo(userEmail) {
+      return axiosAPI.get(`users/${userEmail}`);
+    },
+    getAllUsers() {
+      return axiosAPI.get("users");
+    },
+    getUserUploads(userID) {
+      return axiosAPI.get(`designs/${userID}`);
+    },
+  },
   explore: {
     getAllImages() {
       return axiosAPI.get("designs");
     },
   },
-  community: {
-    getAllUsers() {
-      return axiosAPI.get("users");
+  likes: {
+    getUserLikes(userID) {
+      return axiosAPI.get(`favorites/users/${userID}`);
     },
   },
 };

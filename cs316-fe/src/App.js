@@ -16,13 +16,17 @@ import {
   ProfileEdit,
 } from "./Componenets/Pages/pageExporter";
 
+import axiosAPI from "./Componenets/Axios/API";
 import Firebase from "./Componenets/Firebase/firebase";
 
 function App() {
-  const [usrState, setUsrState] = useState({
-    authUsr: null,
+  const [usrToken, setUsrToken] = useState({
+    token: null,
   });
-  //console.log(usrState);
+  const [usrProps, setUsrProps] = useState({
+    user: null,
+  });
+  //console.log(usrState.authUsr.email);
 
   /*
   setLoginStatus = (login) => {
@@ -34,16 +38,33 @@ function App() {
 */
   /**/
   useEffect(() => {
-    const change = Firebase.auth.onAuthStateChanged((authUsr) => {
-      authUsr ? setUsrState({ authUsr }) : setUsrState({ authUsr: null });
+    const change = Firebase.auth.onAuthStateChanged((token) => {
+      token ? setUsrToken({ token }) : setUsrToken({ token: null });
       return () => change();
     });
+    if (usrToken) {
+      /*
+      axiosAPI.users
+        .getUserInfo("usrToken.token.email")
+        .then((res) => {
+          //get User from Email
+          const user = res.data;
+          setUsrProps(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+        */
+    }
   }, []);
+
+  //TODO: PASS USER EMAIL/STATE TO Profile & Likes
+  //TODO: Add protected routing
 
   return (
     <div>
       <BrowserRouter>
-        <Navbar usrState={usrState.authUsr} />
+        <Navbar usrState={usrToken.token} />
         <Switch>
           <Route path="/setup" exact component={Setup} />
           <Route
@@ -81,7 +102,7 @@ function App() {
             path="/profile"
             exact
             render={(props) => (
-              <Profile {...props} firebase={Firebase} /*auth={usrState}*/ />
+              <Profile {...props} firebase={Firebase} auth="3" /> //usrState.authUser />
             )}
           />
           <Route path="/profile/edit" component={ProfileEdit} />

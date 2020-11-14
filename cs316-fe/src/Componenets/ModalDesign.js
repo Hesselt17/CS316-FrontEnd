@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ModalDesign = (props) => {
+  //TODO: Add specifier in props for what kind of tiles being selected
   const classes = useStyles();
 
   return (

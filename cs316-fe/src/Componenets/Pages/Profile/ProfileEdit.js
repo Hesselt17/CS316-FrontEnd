@@ -6,13 +6,13 @@ const ProfileEdit = (props) => {
   const [user, setUser] = useState({});
 
   const [textInput, setTextInput] = useState({
-    avatar: null,
-    bio:
-      "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    avatar:
+      "https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/users%2FtestAvatar.jpg?alt=media&token=ee06b370-8a58-4942-8942-9ab7050d3783",
+    bio: "BET",
     email: "",
     name: "",
     netid: "hpw97",
-    password: "62VQcpwdF",
+    password: "aaaaaa",
     score: 0,
     wherelive: "",
   });

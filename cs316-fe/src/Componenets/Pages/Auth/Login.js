@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@material-ui/core";
-import { Link, withRouter } from "react-router-dom";
 
 const initialState = {
   Email: "",

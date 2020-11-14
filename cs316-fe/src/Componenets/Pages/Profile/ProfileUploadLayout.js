@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -15,6 +15,8 @@ import image6 from "../../../Assets/SouthgateDouble.JPG";
 import image7 from "../../../Assets/RandolphDouble1.JPG";
 import image8 from "../../../Assets/TrinityHall.JPG";
 import image9 from "../../../Assets/GACR.JPG";
+
+import axiosAPI from "../../Axios/API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,8 +83,25 @@ var imageData = [
   },
 ];
 
-export default function ProfileUploadLayout() {
+const ProfileUploadLayout = (props) => {
   const classes = useStyles();
+  const [uploads, setUploads] = useState([]);
+
+  useEffect(() => {
+    getUploads();
+  }, []);
+
+  const getUploads = () => {
+    axiosAPI.users
+      .getUserUploads(props.userID)
+      .then((res) => {
+        const data = res.data;
+        setUploads(data.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className={classes.root}>
@@ -90,15 +109,15 @@ export default function ProfileUploadLayout() {
         {/*<GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">December</ListSubheader>
   </GridListTile>*/}
-        {imageData.map((tile) => (
-          <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
+        {uploads.map((tile) => (
+          <GridListTile key={tile.designid}>
+            <img src={tile.photo} alt={tile.uid} />
             <GridListTileBar
-              title={tile.title}
-              subtitle={<span>by: {tile.author}</span>}
+              title={tile.caption}
+              subtitle={<span>by: {tile.uid}</span>}
               actionIcon={
                 <IconButton
-                  aria-label={`info about ${tile.title}`}
+                  aria-label={`info about ${tile}`}
                   className={classes.icon}
                 >
                   <InfoIcon />
@@ -110,4 +129,6 @@ export default function ProfileUploadLayout() {
       </GridList>
     </div>
   );
-}
+};
+
+export default ProfileUploadLayout;
