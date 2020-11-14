@@ -7,7 +7,6 @@ import ProfileUploadLayout from "./ProfileUploadLayout";
 import ProfileMenu from "./ProfileMenu";
 import AboutMe from "./AboutMe";
 import Backdrop from "../../Backdrop";
-import { PinDropSharp } from "@material-ui/icons";
 
 //Styling for the Page
 const useStyles = makeStyles({
@@ -25,20 +24,8 @@ const Profile = (props) => {
   const [currUser, setCurrUser] = useState([]);
 
   useEffect(() => {
-    var min = 1;
-    var max = 100;
-    var rand = Math.floor(min + Math.random() * (max - min));
-    //console.log(rand);
-    axios
-      .get(`http://vcm-17053.vm.duke.edu:5000/users/${props.auth}`) //$props.auth.UID?
-      .then((res) => {
-        const data = res.data;
-        setCurrUser(data.result);
-        //console.log("DATA", data.result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setCurrUser(props.auth);
+    console.log(currUser);
   }, []);
 
   return (
@@ -92,8 +79,7 @@ const Profile = (props) => {
                 >
                   My Uploads
                 </Typography>
-                <ProfileUploadLayout userID={props.auth} />{" "}
-                {/*props.auth.userID*/}
+                <ProfileUploadLayout userID={props.auth.uid} />
               </Paper>
             </Grid>
           </Grid>

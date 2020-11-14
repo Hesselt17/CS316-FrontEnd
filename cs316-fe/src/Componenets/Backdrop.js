@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   ListItem,
@@ -63,6 +63,17 @@ const useStyles = makeStyles({
 
 const Backdrop = (props) => {
   const classes = useStyles();
+  const [searchAndFilter, setSearchAndFilter] = useState(false);
+
+  useEffect(() => {
+    setSearchAndFilter(renderSearchAndFilter());
+  }, []);
+  function renderSearchAndFilter() {
+    if (["Home", "Likes", "Explore", "Community"].indexOf(props.page) >= 0) {
+      return true;
+    }
+    return false;
+  }
 
   return (
     <div>
@@ -72,38 +83,44 @@ const Backdrop = (props) => {
             {props.page}
           </Typography>
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
+            {searchAndFilter && (
+              <>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                />
+              </>
+            )}
           </div>
-          <TextField
-            //TODO: SEARCH BAR -- https://medium.com/@pradityadhitama/simple-search-bar-component-functionality-in-react-6589fda3385d
-            className={classes.filter}
-            id="filled-select-currency"
-            //select
-            label="Select"
-            //value={currency}
-            //onChange={handleChange}
-            helperText="Select Filter(s)"
-            variant="filled"
-          >
-            {/*currencies.map((option) => (
+          {searchAndFilter && (
+            <TextField
+              //TODO: SEARCH BAR -- https://medium.com/@pradityadhitama/simple-search-bar-component-functionality-in-react-6589fda3385d
+              className={classes.filter}
+              id="filled-select-currency"
+              //select
+              label="Select"
+              //value={currency}
+              //onChange={handleChange}
+              helperText="Select Filter(s)"
+              variant="filled"
+            >
+              {/*currencies.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))*/}
-          </TextField>
+            </TextField>
+          )}
           {props.firebase && (
             <Button variant="contained" onClick={props.firebase.logout}>
-              Submit
+              Logout
             </Button>
           )}
         </div>

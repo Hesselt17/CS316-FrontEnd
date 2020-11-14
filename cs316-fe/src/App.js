@@ -14,10 +14,23 @@ import {
   Upload,
   Profile,
   ProfileEdit,
+  Details,
 } from "./Componenets/Pages/pageExporter";
 
 import axiosAPI from "./Componenets/Axios/API";
 import Firebase from "./Componenets/Firebase/firebase";
+
+const initialUser = {
+  avatar: null,
+  bio: "a",
+  email: "a",
+  name: "a",
+  netid: "a",
+  password: "",
+  score: 0,
+  uid: 3,
+  wherelive: "",
+};
 
 function App() {
   const [usrToken, setUsrToken] = useState({
@@ -42,10 +55,10 @@ function App() {
       token ? setUsrToken({ token }) : setUsrToken({ token: null });
       return () => change();
     });
-    if (usrToken) {
-      /*
+    if (usrToken.token) {
+      console.log(usrToken);
       axiosAPI.users
-        .getUserInfo("usrToken.token.email")
+        .getUserInfo(usrToken.token.email)
         .then((res) => {
           //get User from Email
           const user = res.data;
@@ -54,7 +67,6 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-        */
     }
   }, []);
 
@@ -102,10 +114,11 @@ function App() {
             path="/profile"
             exact
             render={(props) => (
-              <Profile {...props} firebase={Firebase} auth="3" /> //usrState.authUser />
+              <Profile {...props} firebase={Firebase} auth={initialUser} /> //auth should be usrProps />
             )}
           />
           <Route path="/profile/edit" component={ProfileEdit} />
+          <Route path="/details" component={Details} />
         </Switch>
       </BrowserRouter>
       {/*<div className="App">

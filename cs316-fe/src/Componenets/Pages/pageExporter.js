@@ -8,6 +8,7 @@ import Community from "./Community/Community";
 import Upload from "./Upload/Upload";
 import Profile from "./Profile/Profile";
 import ProfileEdit from "./Profile/ProfileEdit";
+import Details from "./Details/Details";
 
 export {
   Setup,
@@ -20,4 +21,5 @@ export {
   Upload,
   Profile,
   ProfileEdit,
+  Details,
 };

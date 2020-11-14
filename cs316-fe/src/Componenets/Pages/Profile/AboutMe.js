@@ -16,8 +16,9 @@ const TextTyprograhy = withStyles({
   },
 })(Typography);
 
-const AboutMe = (currUser) => {
+const AboutMe = (props) => {
   const classes = useStyles();
+  const currUser = props.user;
   return (
     <div>
       <Grid container style={{ paddingTop: "2rem" }}>

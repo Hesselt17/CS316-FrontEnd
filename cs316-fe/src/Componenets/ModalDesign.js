@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Backdrop, Modal, Fade } from "@material-ui/core";
+import { Backdrop, Button, Modal, Fade } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -43,13 +44,20 @@ const ModalDesign = (props) => {
           <div className={classes.paper}>
             <h2 id="modal-title">{props.tile.caption && props.tile.caption}</h2>
             <p id="modal-description">{props.tile.uid && props.tile.uid}</p>
-            <iframe
+            {/*<iframe
               title={props.tile.designid}
               width="350"
               height="400"
               frameBorder="0"
               src="https://momento360.com/e/u/15444867432c4a3797c398608c02bea8?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium>"
-            />
+            />*/}
+            <Link
+              to={{
+                pathname: "/details",
+              }}
+            >
+              View Details
+            </Link>
           </div>
         </Fade>
       </Modal>
