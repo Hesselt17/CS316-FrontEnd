@@ -13,9 +13,6 @@ export default {
     getAllUsers() {
       return axiosAPI.get("users");
     },
-    getUserUploads(userID) {
-      return axiosAPI.get(`designs/${userID}`);
-    },
   },
   explore: {
     getAllImages() {
@@ -25,6 +22,11 @@ export default {
   likes: {
     getUserLikes(userID) {
       return axiosAPI.get(`favorites/users/${userID}`);
+    },
+  },
+  designs: {
+    getUserUploads(userID) {
+      return axiosAPI.get(`designs/${userID}`);
     },
   },
 };

@@ -11,6 +11,7 @@ const Home = () => {
   const photoRef = React.createRef(); // will only be called when the src prop gets updated
 
   useEffect(() => {
+    /*
     const photoViewer = new Viewer({
       container: "photoViewer", //photoRef.current,
       panorama: image8,
@@ -23,6 +24,7 @@ const Home = () => {
     return () => {
       photoViewer.destroy();
     };
+    */
   }, [image8]);
   return (
     <div>

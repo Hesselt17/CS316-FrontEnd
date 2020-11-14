@@ -54,6 +54,7 @@ const ModalDesign = (props) => {
             <Link
               to={{
                 pathname: "/details",
+                design: props.tile,
               }}
             >
               View Details

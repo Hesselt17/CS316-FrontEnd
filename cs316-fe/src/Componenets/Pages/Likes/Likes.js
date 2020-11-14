@@ -47,7 +47,7 @@ const Likes = (props) => {
 
   const getLikes = () => {
     axiosAPI.likes
-      .getUserLikes("72")
+      .getUserLikes(props.auth.uid)
       .then((res) => {
         const data = res.data;
         console.log("DATA", data.result);
@@ -78,7 +78,7 @@ const Likes = (props) => {
             cols={4}
           >
             {likes.map((designs) => (
-              <GridListTile key={designs.name}>
+              <GridListTile key={designs.designid}>
                 <img
                   src={designs.avatar}
                   alt={designs.uid}

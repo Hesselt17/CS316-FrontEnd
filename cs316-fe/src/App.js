@@ -94,7 +94,13 @@ function App() {
             )}
           />
           <Route path="/home" exact component={Home} />
-          <Route path="/likes" exact component={Likes} />
+          <Route
+            path="/likes"
+            exact
+            render={(props) => (
+              <Likes {...props} firebase={Firebase} auth={initialUser} />
+            )}
+          />
           <Route
             path="/explore"
             exact

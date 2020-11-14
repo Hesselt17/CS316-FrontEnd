@@ -92,7 +92,7 @@ const ProfileUploadLayout = (props) => {
   }, []);
 
   const getUploads = () => {
-    axiosAPI.users
+    axiosAPI.designs
       .getUserUploads(props.userID)
       .then((res) => {
         const data = res.data;

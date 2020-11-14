@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     marginRight: "auto",
     background: "#E2E6ED", //#005587 #339898 #E89923 #DAD0C6 #E2E6ED #B5B5B5
-    height: "90vh",
+    height: "95vh",
     width: "95%",
   },
   TitleStyle: {
