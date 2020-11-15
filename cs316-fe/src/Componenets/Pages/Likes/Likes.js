@@ -43,7 +43,7 @@ const Likes = (props) => {
 
   useEffect(() => {
     getLikes();
-  }, []); //http://:vcm@vcm-17053.vm.duke.edu/favorites/${userID}
+  }, []);
 
   const getLikes = () => {
     axiosAPI.likes

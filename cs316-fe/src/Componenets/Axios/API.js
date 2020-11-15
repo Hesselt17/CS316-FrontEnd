@@ -21,7 +21,7 @@ export default {
   },
   likes: {
     getUserLikes(userID) {
-      return axiosAPI.get(`favorites/users/${userID}`);
+      return axiosAPI.get(`likes/users/${userID}`);
     },
   },
   designs: {

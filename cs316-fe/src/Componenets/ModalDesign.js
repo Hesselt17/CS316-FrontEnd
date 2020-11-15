@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Backdrop, Button, Modal, Fade } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -26,6 +26,16 @@ const useStyles = makeStyles((theme) => ({
 const ModalDesign = (props) => {
   //TODO: Add specifier in props for what kind of tiles being selected
   const classes = useStyles();
+  const [isDesign, setisDesign] = useState(null);
+
+  useEffect(() => {
+    if (props.email) {
+      setisDesign(false);
+    }
+    if (props.caption) {
+      setisDesign(true);
+    }
+  }, []);
 
   return (
     <div>
