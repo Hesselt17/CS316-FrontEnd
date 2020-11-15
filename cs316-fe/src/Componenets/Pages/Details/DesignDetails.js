@@ -3,7 +3,8 @@ import React from "react";
 import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 
 import Backdrop from "../../Backdrop";
-import ViewerLeft from "./ViewerLeft";
+import ViewerLeft from "./DesignViewerLeft";
+import InfoRight from "./DesignInfoRight";
 
 const useStyles = makeStyles({
   OuterGridStyle: {

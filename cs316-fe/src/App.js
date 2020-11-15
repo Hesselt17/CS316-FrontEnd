@@ -14,7 +14,8 @@ import {
   Upload,
   Profile,
   ProfileEdit,
-  Details,
+  DesignDetails,
+  CommunityDetails,
 } from "./Componenets/Pages/pageExporter";
 
 import axiosAPI from "./Componenets/Axios/API";
@@ -124,7 +125,8 @@ function App() {
             )}
           />
           <Route path="/profile/edit" component={ProfileEdit} />
-          <Route path="/details" component={Details} />
+          <Route path="/design/details" component={DesignDetails} />
+          <Route path="/community/details" component={CommunityDetails} />
         </Switch>
       </BrowserRouter>
       {/*<div className="App">

@@ -24,18 +24,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ModalDesign = (props) => {
-  //TODO: Add specifier in props for what kind of tiles being selected
   const classes = useStyles();
   const [isDesign, setisDesign] = useState(null);
 
   useEffect(() => {
-    if (props.email) {
+    if (props.tile.email) {
       setisDesign(false);
     }
-    if (props.caption) {
+    if (props.tile.caption) {
       setisDesign(true);
     }
-  }, []);
+  });
 
   return (
     <div>
@@ -61,14 +60,25 @@ const ModalDesign = (props) => {
               frameBorder="0"
               src="https://momento360.com/e/u/15444867432c4a3797c398608c02bea8?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium>"
             />*/}
-            <Link
-              to={{
-                pathname: "/details",
-                design: props.tile,
-              }}
-            >
-              View Details
-            </Link>
+            {isDesign ? (
+              <Link
+                to={{
+                  pathname: "/design/details",
+                  design: props.tile,
+                }}
+              >
+                View Details
+              </Link>
+            ) : (
+              <Link
+                to={{
+                  pathname: "/community/details",
+                  user: props.tile,
+                }}
+              >
+                View Details
+              </Link>
+            )}
           </div>
         </Fade>
       </Modal>
