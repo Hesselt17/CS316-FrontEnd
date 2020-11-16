@@ -21,15 +21,16 @@ const useStyles = makeStyles({
 const Profile = (props) => {
   const classes = useStyles();
   const [currUser, setCurrUser] = useState([]);
+  //console.log(props);
 
   useEffect(() => {
     setCurrUser(props.auth);
     console.log(currUser);
-  }, []);
+  });
 
   return (
     <div>
-      <ProfileMenu />
+      {/*<ProfileMenu />*/}
       <Backdrop page="Profile" firebase={props.firebase}>
         <div
           style={{

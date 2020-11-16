@@ -12,7 +12,7 @@ const useStyles = makeStyles({});
 
 const TextTyprograhy = withStyles({
   root: {
-    color: "#E2E6ED",
+    color: "#005587",
   },
 })(Typography);
 
@@ -40,20 +40,20 @@ const AboutMe = (props) => {
           }}
         >
           <TextTyprograhy variant="h5">Name: {currUser.name}</TextTyprograhy>
-          <Typography variant="h5" className={classes.text}>
+          <TextTyprograhy variant="h5">
             Score: {currUser.score}/5
-          </Typography>
-          <Typography variant="h5">
+          </TextTyprograhy>
+          <TextTyprograhy variant="h5">
             On-Campus Residence: {currUser.wherelive}
-          </Typography>
+          </TextTyprograhy>
         </Grid>
         <Grid container item style={{ paddingTop: "10vh" }}>
-          <Typography variant="h4" style={{ paddingLeft: "1rem" }}>
+          <TextTyprograhy variant="h4" style={{ paddingLeft: "1rem" }}>
             Bio:
-          </Typography>
-          <Typography variant="h5" style={{ paddingLeft: "1rem" }}>
+          </TextTyprograhy>
+          <TextTyprograhy variant="h5" style={{ paddingLeft: "1rem" }}>
             {currUser.bio}
-          </Typography>
+          </TextTyprograhy>
         </Grid>
       </Grid>
     </div>

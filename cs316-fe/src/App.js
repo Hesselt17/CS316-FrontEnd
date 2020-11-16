@@ -30,7 +30,7 @@ const initialUser = {
   password: "",
   score: 0,
   uid: 3,
-  wherelive: "",
+  wherelive: "Hollows",
 };
 
 function App() {
@@ -50,12 +50,14 @@ function App() {
     setUsrState({ user: usr });
   };
 */
-  /**/
   useEffect(() => {
-    const change = Firebase.auth.onAuthStateChanged((token) => {
-      token ? setUsrToken({ token }) : setUsrToken({ token: null });
-      return () => change();
-    });
+    console.log("useEffect");
+    let changedState;
+    const change = async () => {
+      changedState = await Firebase.auth.onAuthStateChanged((token) => {
+        token ? setUsrToken({ token }) : setUsrToken({ token: null });
+      });
+    };
     if (usrToken.token) {
       console.log(usrToken);
       axiosAPI.users
@@ -63,15 +65,17 @@ function App() {
         .then((res) => {
           //get User from Email
           const user = res.data;
+          console.log("APP USER", user);
           setUsrProps(user);
         })
         .catch((err) => {
           console.log(err);
         });
     }
+    console.log(usrToken);
+    return () => change();
   }, []);
 
-  //TODO: PASS USER EMAIL/STATE TO Profile & Likes
   //TODO: Add protected routing
 
   return (
@@ -99,7 +103,7 @@ function App() {
             path="/likes"
             exact
             render={(props) => (
-              <Likes {...props} firebase={Firebase} auth={initialUser} />
+              <Likes {...props} firebase={Firebase} auth={initialUser} /> //usrProps
             )}
           />
           <Route
@@ -121,7 +125,7 @@ function App() {
             path="/profile"
             exact
             render={(props) => (
-              <Profile {...props} firebase={Firebase} auth={initialUser} /> //auth should be usrProps />
+              <Profile {...props} firebase={Firebase} auth={initialUser} />
             )}
           />
           <Route path="/profile/edit" component={ProfileEdit} />

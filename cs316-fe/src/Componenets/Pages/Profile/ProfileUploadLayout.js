@@ -15,6 +15,7 @@ import image6 from "../../../Assets/SouthgateDouble.JPG";
 import image7 from "../../../Assets/RandolphDouble1.JPG";
 import image8 from "../../../Assets/TrinityHall.JPG";
 import image9 from "../../../Assets/GACR.JPG";
+import ModalDesign from "../../ModalDesign";
 
 import axiosAPI from "../../Axios/API";
 
@@ -86,6 +87,17 @@ var imageData = [
 const ProfileUploadLayout = (props) => {
   const classes = useStyles();
   const [uploads, setUploads] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState({});
+
+  const handleOpen = (tile) => {
+    setSelected(tile);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     getUploads();
@@ -111,10 +123,15 @@ const ProfileUploadLayout = (props) => {
   </GridListTile>*/}
         {uploads.map((tile) => (
           <GridListTile key={tile.designid}>
-            <img src={tile.photo} alt={tile.uid} />
+            <img
+              src={tile.photo}
+              alt={tile.uid}
+              onClick={() => handleOpen(tile)}
+            />
             <GridListTileBar
               title={tile.caption}
               subtitle={<span>by: {tile.uid}</span>}
+              onClick={() => handleOpen(tile)}
               actionIcon={
                 <IconButton
                   aria-label={`info about ${tile}`}
@@ -126,6 +143,7 @@ const ProfileUploadLayout = (props) => {
             />
           </GridListTile>
         ))}
+        <ModalDesign open={open} tile={selected} onClose={handleClose} />
       </GridList>
     </div>
   );
