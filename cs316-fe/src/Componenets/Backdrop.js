@@ -79,7 +79,7 @@ const Backdrop = (props) => {
     <div>
       <Paper className={classes.PageStyle}>
         <div style={{ display: "flex" }}>
-          <Typography variant="h2" className={classes.TitleStyle} noWrap>
+          <Typography variant="h3" className={classes.TitleStyle} noWrap>
             {props.page}
           </Typography>
           <div className={classes.search}>

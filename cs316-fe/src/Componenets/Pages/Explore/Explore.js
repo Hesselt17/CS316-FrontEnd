@@ -86,21 +86,31 @@ const Explore = (props) => {
       <Backdrop page="Explore">
         <div className={classes.root}>
           <GridList
-            cellHeight={200}
-            spacing={100}
+            cellHeight={250}
+            spacing={25}
             className={classes.gridList}
             cols={4}
           >
             {/*<GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">December</ListSubheader>
   </GridListTile>*/}
-            {designs.map((tile) => (
+            {designs.slice(0, 10).map((tile) => (
               <GridListTile key={tile.designid}>
-                <img
-                  src={tile.photo}
-                  alt={tile.uid}
-                  onClick={() => handleOpen(tile)}
-                />
+                {tile.typedesign === "room" && (
+                  <img
+                    src={tile.photo}
+                    alt={tile.uid}
+                    onClick={() => handleOpen(tile)}
+                  />
+                )}
+                {tile.typedesign === "diy" && (
+                  <video
+                    src={tile.photo}
+                    alt={tile.uid}
+                    //poster={tile.photo}
+                    onClick={() => handleOpen(tile)}
+                  />
+                )}
                 <GridListTileBar
                   title={tile.caption}
                   subtitle={<span>By: {tile.uid}</span>}

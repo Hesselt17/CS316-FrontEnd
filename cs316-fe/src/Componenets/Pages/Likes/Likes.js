@@ -77,7 +77,7 @@ const Likes = (props) => {
             className={classes.gridList}
             cols={4}
           >
-            {likes.map((designs) => (
+            {likes.slice(0, 10).map((designs) => (
               <GridListTile key={designs.designid}>
                 <img
                   src={designs.avatar}
