@@ -112,10 +112,12 @@ const Signup = (props) => {
       alert("Passwords do not match. Please try again");
     } else {
       alert("Success!");
+      props.history.push("/home");
       const { name, email, password } = textInput;
       props.firebase
         .register(email, password)
         .then((authUser) => {
+          console.log("auth");
           setTextInput({ ...initialState });
           props.history.push("/home");
         })
@@ -182,14 +184,12 @@ const Signup = (props) => {
                 justifyContent: "space-between",
               }}
             >
-              <img
-                style={{
-                  height: 450,
-                  width: 550,
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-                src="./decoratedbassettroom.jpg"
+              <iframe
+                title="setup"
+                width="600"
+                height="700"
+                frameBorder="0"
+                src="https://momento360.com/e/u/15444867432c4a3797c398608c02bea8?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium>"
               />
             </div>
           </Paper>

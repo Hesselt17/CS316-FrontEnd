@@ -6,7 +6,6 @@ import Navbar from "./Navbar";
 import {
   Setup,
   Signup,
-  Login,
   Login2,
   Home,
   Likes,
@@ -84,7 +83,7 @@ function App() {
       <BrowserRouter>
         {usrProps && <Navbar usrState={usrToken.token} />}
         <Switch>
-          <Route path="/setup" exact component={Setup} />
+          <Route path="/" exact component={Setup} />
           <Route
             path="/signup"
             exact

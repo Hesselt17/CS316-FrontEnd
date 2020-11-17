@@ -69,7 +69,6 @@ const useStyles = makeStyles({
 
 const Setup = () => {
   const classes = useStyles();
-  const [profData, setprofData] = useState([]);
 
   return (
     <div>

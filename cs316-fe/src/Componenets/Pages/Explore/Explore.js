@@ -93,7 +93,7 @@ const Explore = (props) => {
             {/*<GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">December</ListSubheader>
   </GridListTile>*/}
-            {designs.slice(0, 1).map((tile) => (
+            {designs.slice(0, 20).map((tile) => (
               <GridListTile key={tile.designid}>
                 {tile.typedesign === "room" && (
                   <img

@@ -91,7 +91,7 @@ const Home = (props) => {
         <div id="photoViewer" style={{ width: "50px", height: "80px" }} />
       </div>
       <div>
-        <Backdrop page="Explore" selection={designs}>
+        <Backdrop page="Home" selection={designs}>
           <div className={classes.root}>
             <GridList
               cellHeight={250}
@@ -102,7 +102,7 @@ const Home = (props) => {
               {/*<GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">December</ListSubheader>
   </GridListTile>*/}
-              {designs.slice(0, 2).map((tile) => (
+              {designs.slice(0, 20).map((tile) => (
                 <GridListTile key={tile.designid}>
                   {tile.typedesign === "room" && (
                     <img
@@ -145,7 +145,7 @@ const Home = (props) => {
           </div>
         </Backdrop>
       </div>
-      ); };
+      );
     </div>
   );
 };
