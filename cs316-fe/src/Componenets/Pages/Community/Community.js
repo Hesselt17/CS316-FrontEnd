@@ -77,7 +77,7 @@ const Community = (props) => {
             className={classes.gridList}
             cols={4}
           >
-            {users.slice(0, 10).map((usrs) => (
+            {users.slice(0, 0).map((usrs) => (
               <GridListTile key={usrs.name}>
                 <img
                   src={usrs.avatar}

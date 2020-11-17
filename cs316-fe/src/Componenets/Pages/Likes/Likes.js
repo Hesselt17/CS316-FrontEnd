@@ -40,14 +40,22 @@ const Likes = (props) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({});
   const [likes, setLikes] = useState([]);
+  const [userProps, setUserProps] = useState([]);
 
   useEffect(() => {
+    setUserProps(getUser());
     getLikes();
   }, []);
 
+  const getUser = async () => {
+    let user = await props.auth.result;
+    console.log(user);
+    return user;
+  };
+
   const getLikes = () => {
     axiosAPI.likes
-      .getUserLikes(props.auth.uid)
+      .getUserLikes(props.auth.result.uid)
       .then((res) => {
         const data = res.data;
         console.log("DATA", data.result);
@@ -77,7 +85,7 @@ const Likes = (props) => {
             className={classes.gridList}
             cols={4}
           >
-            {likes.slice(0, 10).map((designs) => (
+            {likes.slice(0, 0).map((designs) => (
               <GridListTile key={designs.designid}>
                 <img
                   src={designs.avatar}

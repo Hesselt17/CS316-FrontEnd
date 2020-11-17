@@ -41,7 +41,6 @@ const Explore = (props) => {
   const [selected, setSelected] = useState({});
   const [designs, setDesigns] = useState([]);
   const firebaseCaller = props.firebase;
-  const userID = 46;
 
   useEffect(() => {
     /*
@@ -61,7 +60,7 @@ const Explore = (props) => {
 
   const getImgs = () => {
     axiosAPI.explore
-      .getAllImages()
+      .getExploreImages()
       .then((res) => {
         const data = res.data;
         console.log("DATA", data.result);
@@ -94,7 +93,7 @@ const Explore = (props) => {
             {/*<GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">December</ListSubheader>
   </GridListTile>*/}
-            {designs.slice(0, 10).map((tile) => (
+            {designs.slice(0, 0).map((tile) => (
               <GridListTile key={tile.designid}>
                 {tile.typedesign === "room" && (
                   <img

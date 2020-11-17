@@ -42,14 +42,6 @@ function App() {
   });
   //console.log(usrState.authUsr.email);
 
-  /*
-  setLoginStatus = (login) => {
-    setUsrState({ loggedIn: login });
-  };
-  setUser = (usr) => {
-    setUsrState({ user: usr });
-  };
-*/
   useEffect(() => {
     console.log("useEffect");
     let changedState;
@@ -58,23 +50,29 @@ function App() {
         token ? setUsrToken({ token }) : setUsrToken({ token: null });
       });
     };
+    change();
+  }, [setUsrToken]);
+
+  useEffect(() => {
     if (usrToken.token) {
       console.log(usrToken);
-      axiosAPI.users
-        .getUserInfo(usrToken.token.email)
-        .then((res) => {
-          //get User from Email
-          const user = res.data;
-          console.log("APP USER", user);
-          setUsrProps(user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const updateUser = async () => {
+        axiosAPI.users
+          .getUserInfo(usrToken.token.email)
+          .then((res) => {
+            //get User from Email
+            const user = res.data;
+            console.log("APP USER", user);
+            setUsrProps(user);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+      updateUser();
     }
-    console.log(usrToken);
-    return () => change();
-  }, []);
+    console.log(usrProps);
+  }, [usrToken]);
 
   //TODO: Add protected routing
 
@@ -103,7 +101,11 @@ function App() {
             path="/likes"
             exact
             render={(props) => (
-              <Likes {...props} firebase={Firebase} auth={initialUser} /> //usrProps
+              <Likes
+                {...props}
+                firebase={Firebase}
+                auth={usrProps && usrProps}
+              /> //usrProps
             )}
           />
           <Route
@@ -125,7 +127,7 @@ function App() {
             path="/profile"
             exact
             render={(props) => (
-              <Profile {...props} firebase={Firebase} auth={initialUser} />
+              <Profile {...props} firebase={Firebase} auth={usrProps} />
             )}
           />
           <Route path="/profile/edit" component={ProfileEdit} />

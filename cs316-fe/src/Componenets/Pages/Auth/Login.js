@@ -24,6 +24,7 @@ const Login = (props) => {
       .login(Email, Password)
       .then((authUser) => {
         setState({ ...initialState });
+        alert("Successfully logged in!");
         props.history.push("/home");
       })
       .catch((error) => {

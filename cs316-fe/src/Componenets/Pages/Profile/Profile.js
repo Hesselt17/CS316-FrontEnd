@@ -57,7 +57,7 @@ const Profile = (props) => {
                   </Typography>
                   <Link
                     to={{
-                      pathname: "/profile/edit/" + currUser.uid,
+                      pathname: "/profile/edit/" + currUser.result,
                       state: { user: currUser },
                     }}
                   >

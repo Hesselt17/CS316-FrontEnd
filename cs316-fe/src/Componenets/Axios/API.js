@@ -20,6 +20,9 @@ export default {
     getAllImages() {
       return axiosAPI.get("designs");
     },
+    getExploreImages() {
+      return axiosAPI.get("explore");
+    },
   },
   likes: {
     getUserLikes(userID) {
