@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AlignItemsList() {
+export default function DesignInfoRight() {
   const classes = useStyles();
 
   return (
@@ -40,7 +40,9 @@ export default function AlignItemsList() {
               >
                 Ali Connors
               </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
+              {
+                " — I'll be in your neighborhood doing errands this weekend asdn;fiahsdo;igha;oisdhgoiahdsgo;iah…"
+              }
             </React.Fragment>
           }
         />

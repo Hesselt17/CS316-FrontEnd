@@ -57,7 +57,7 @@ const ViewerLeft = (props) => {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {props.design.name.substring(0, 1)}
+            {props.design.uid || ""}
           </Avatar>
         }
         action={

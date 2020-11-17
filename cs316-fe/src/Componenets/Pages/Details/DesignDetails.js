@@ -5,6 +5,7 @@ import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import Backdrop from "../../Backdrop";
 import ViewerLeft from "./DesignViewerLeft";
 import InfoRight from "./DesignInfoRight";
+import DesignInfoRight from "./DesignInfoRight";
 
 const useStyles = makeStyles({
   OuterGridStyle: {
@@ -20,6 +21,7 @@ const Details = (props) => {
   const classes = useStyles();
   //Specify if DIY or Dorm
   console.log(props.location.design);
+  const pass = props.location.design;
 
   return (
     <div>
@@ -48,7 +50,7 @@ const Details = (props) => {
                     Design
                   </Typography>
                 </div>
-                <ViewerLeft design={props.location.design} />
+                <ViewerLeft design={pass} />
               </Paper>
             </Grid>
             <Grid item xs={6}>
@@ -64,6 +66,16 @@ const Details = (props) => {
                   Design Info
                 </Typography>
                 {/*Right Paper*/}
+                <Typography
+                  variant="h4"
+                  style={{
+                    paddingLeft: "1rem",
+                    color: "#005587",
+                  }}
+                >
+                  Comments
+                </Typography>
+                <DesignInfoRight />
               </Paper>
             </Grid>
           </Grid>

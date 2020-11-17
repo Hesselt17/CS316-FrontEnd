@@ -39,14 +39,14 @@ const Home = () => {
           width="50%"
           height="500"
           frameBorder="0"
-          src="https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/images%2FBlackwellDouble.JPG?alt=media&token=d53dfcb1-686d-4ec1-a791-4ca3785b3713"
+          src="https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/images%2FBlackwell%20Double.JPG?alt=media&token=837befd1-98b6-45ef-8347-cdcf07220c87"
         />*/}
         <div id="photoViewer" />
-        {/*<iframe
+        <iframe
           width="50%"
           height="500"
-          src="https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/images%2FBlackwellDouble.JPG?alt=media&token=d53dfcb1-686d-4ec1-a791-4ca3785b3713"
-        />*/}
+          src="https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/images%2FBlackwell%20Double.JPG?alt=media&token=837befd1-98b6-45ef-8347-cdcf07220c87"
+        />
       </div>
     </div>
   );

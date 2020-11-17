@@ -16,10 +16,25 @@ const TextTyprograhy = withStyles({
   },
 })(Typography);
 
+const initialUser = {
+  result: {
+    avatar: "",
+    bio: "",
+    email: "",
+    name: "",
+    netid: "",
+    password: "",
+    score: 0,
+    uid: 0,
+    wherelive: "",
+  },
+};
+
 const AboutMe = (props) => {
   const classes = useStyles();
-  const currUser = JSON.parse(localStorage.getItem("CurrentUser")); //props.user;
-  console.log(currUser.result.avatar);
+  const currUser =
+    JSON.parse(localStorage.getItem("CurrentUser")) || initialUser; //props.user;
+  //console.log(currUser.result.avatar);
   return (
     <div>
       <Grid container style={{ paddingTop: "2rem" }}>
