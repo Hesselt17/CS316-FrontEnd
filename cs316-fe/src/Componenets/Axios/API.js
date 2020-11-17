@@ -28,10 +28,27 @@ export default {
     getUserLikes(userID) {
       return axiosAPI.get(`likes/users/${userID}`);
     },
+    getNumDesignLikes(dID) {
+      return axiosAPI.get(`likes/designs/${dID}`);
+    },
+    likePost(dID, userID) {
+      return axiosAPI.post(`likes`, {
+        designid: dID,
+        uid: userID,
+      });
+    },
+    UnlikePost(dID, userID) {
+      return axiosAPI.delete(`likes/${dID}/${userID}`);
+    },
   },
   designs: {
     getUserUploads(userID) {
       return axiosAPI.get(`designs/${userID}`);
+    },
+  },
+  reviews: {
+    getDesignReviews(dID) {
+      return axiosAPI.get(`reviews/${dID}`);
     },
   },
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import {
@@ -17,6 +17,8 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+
+import axiosAPI from "../../Axios/API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,10 +48,61 @@ const useStyles = makeStyles((theme) => ({
 
 const ViewerLeft = (props) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [like, setLiked] = useState(false);
+
+  useEffect(() => {
+    checkLike();
+  });
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+  const checkLike = () => {
+    axiosAPI.likes
+      .getUserLikes(props.currUser.result.uid)
+      .then((res) => {
+        const data = res.data;
+        for (var i = 0; i < data.result.length; i++) {
+          if (data.result[i].designid === props.design.designid) {
+            setLiked(true);
+            break;
+          }
+        }
+        console.log("DATA", data.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleLike = () => {
+    console.log(like);
+    const toggle = !like;
+    if (toggle) {
+      //console.log(props.design.designid, props.currUser.result);
+      axiosAPI.likes
+        .likePost(props.design.designid, props.currUser.result.uid)
+        .then((res) => {
+          const data = res.data;
+          console.log("DATA", data.result);
+          alert("You have liked this post");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axiosAPI.likes
+        .UnlikePost(props.design.designid, props.currUser.result.uid)
+        .then((res) => {
+          const data = res.data;
+          console.log("Unlike", data.result);
+          alert("You have Unliked this post");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
@@ -57,7 +110,7 @@ const ViewerLeft = (props) => {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {props.design.uid || ""}
+            {props.design.name || ""}
           </Avatar>
         }
         action={
@@ -76,15 +129,12 @@ const ViewerLeft = (props) => {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.design.caption}
+          {props.design.typedesign} by {props.design.name}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" onClick={handleLike}>
           <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {

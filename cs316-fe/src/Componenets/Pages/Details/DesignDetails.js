@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 
@@ -6,6 +6,8 @@ import Backdrop from "../../Backdrop";
 import ViewerLeft from "./DesignViewerLeft";
 import InfoRight from "./DesignInfoRight";
 import DesignInfoRight from "./DesignInfoRight";
+
+import axiosAPI from "../../Axios/API";
 
 const useStyles = makeStyles({
   OuterGridStyle: {
@@ -19,9 +21,28 @@ const useStyles = makeStyles({
 
 const Details = (props) => {
   const classes = useStyles();
+  const [numLikes, setNumLikes] = useState(0);
   //Specify if DIY or Dorm
   console.log(props.location.design);
   const pass = props.location.design;
+  const currUser = JSON.parse(localStorage.getItem("CurrentUser"));
+
+  useEffect(() => {
+    getNumLikes();
+  }, []);
+
+  const getNumLikes = () => {
+    axiosAPI.likes
+      .getNumDesignLikes(pass.designid)
+      .then((res) => {
+        const data = res.data;
+        console.log(data.result);
+        setNumLikes(data.result.length);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
@@ -50,7 +71,7 @@ const Details = (props) => {
                     Design
                   </Typography>
                 </div>
-                <ViewerLeft design={pass} />
+                <ViewerLeft design={pass} currUser={currUser} />
               </Paper>
             </Grid>
             <Grid item xs={6}>
@@ -65,17 +86,41 @@ const Details = (props) => {
                 >
                   Design Info
                 </Typography>
-                {/*Right Paper*/}
+                {pass.style.map((tag) => (
+                  <Typography
+                    variant="h5"
+                    style={{
+                      paddingLeft: "1rem",
+                      color: "#005587",
+                    }}
+                  >
+                    Style(s): {tag} {pass.style.length > 1 && ","}
+                  </Typography>
+                ))}
                 <Typography
                   variant="h4"
                   style={{
                     paddingLeft: "1rem",
+                    paddingTop: "2vh",
                     color: "#005587",
                   }}
                 >
-                  Comments
+                  Likes: {numLikes}
                 </Typography>
-                <DesignInfoRight />
+
+                <Typography
+                  variant="h4"
+                  style={{
+                    paddingLeft: "1rem",
+                    paddingTop: "2vh",
+                    color: "#005587",
+                  }}
+                >
+                  Comments:
+                </Typography>
+                <div>
+                  <DesignInfoRight design={pass} />
+                </div>
               </Paper>
             </Grid>
           </Grid>
