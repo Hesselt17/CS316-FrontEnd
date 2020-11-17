@@ -7,6 +7,7 @@ import {
   Setup,
   Signup,
   Login,
+  Login2,
   Home,
   Likes,
   Explore,
@@ -95,7 +96,7 @@ function App() {
             path="/login"
             exact
             render={(props) => (
-              <Login {...props} firebase={Firebase} /*auth={usrState}*/ />
+              <Login2 {...props} firebase={Firebase} /*auth={usrState}*/ />
             )}
           />
           <Route path="/home" exact component={Home} />

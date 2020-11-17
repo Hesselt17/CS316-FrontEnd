@@ -16,6 +16,7 @@
     "react-dropzone": "^11.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
+    "styled-components": "^5.2.1",
     "three": "^0.122.0",
     "uevent": "^2.0.0"
   },

@@ -7,7 +7,7 @@ const initialState = {
   ErrorObj: null,
 };
 
-const Login = (props) => {
+const Login2 = (props) => {
   const [state, setState] = useState(initialState);
 
   const handleChange = (e) => {
@@ -63,4 +63,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default Login2;
