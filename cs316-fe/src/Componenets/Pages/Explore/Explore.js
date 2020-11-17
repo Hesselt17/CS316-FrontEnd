@@ -56,7 +56,7 @@ const Explore = (props) => {
     console.log(imgs[9]);
     */
     getImgs();
-  }, []); //http://:vcm@vcm-17053.vm.duke.edu/designs
+  }, [props]); //http://:vcm@vcm-17053.vm.duke.edu/designs
 
   const getImgs = () => {
     axiosAPI.explore
@@ -82,7 +82,7 @@ const Explore = (props) => {
 
   return (
     <div>
-      <Backdrop page="Explore">
+      <Backdrop page="Explore" selection={designs}>
         <div className={classes.root}>
           <GridList
             cellHeight={250}
@@ -93,7 +93,7 @@ const Explore = (props) => {
             {/*<GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">December</ListSubheader>
   </GridListTile>*/}
-            {designs.slice(0, 0).map((tile) => (
+            {designs.slice(0, 2).map((tile) => (
               <GridListTile key={tile.designid}>
                 {tile.typedesign === "room" && (
                   <img

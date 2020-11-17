@@ -18,13 +18,14 @@ const TextTyprograhy = withStyles({
 
 const AboutMe = (props) => {
   const classes = useStyles();
-  const currUser = props.user;
+  const currUser = JSON.parse(localStorage.getItem("CurrentUser")); //props.user;
+  console.log(currUser.result.avatar);
   return (
     <div>
       <Grid container style={{ paddingTop: "2rem" }}>
         <Grid item style={{ paddingLeft: "1rem" }}>
           <Avatar
-            src="/broken-image.jpg"
+            src={currUser.result.avatar}
             style={{
               width: "300px",
               height: "300px",
@@ -39,12 +40,14 @@ const AboutMe = (props) => {
             paddingLeft: "4rem",
           }}
         >
-          <TextTyprograhy variant="h5">Name: {currUser.name}</TextTyprograhy>
           <TextTyprograhy variant="h5">
-            Score: {currUser.score}/5
+            Name: {currUser.result.name}
           </TextTyprograhy>
           <TextTyprograhy variant="h5">
-            On-Campus Residence: {currUser.wherelive}
+            Score: {currUser.result.score}/5
+          </TextTyprograhy>
+          <TextTyprograhy variant="h5">
+            On-Campus Residence: {currUser.result.wherelive}
           </TextTyprograhy>
         </Grid>
         <Grid container item style={{ paddingTop: "10vh" }}>
@@ -52,7 +55,7 @@ const AboutMe = (props) => {
             Bio:
           </TextTyprograhy>
           <TextTyprograhy variant="h5" style={{ paddingLeft: "1rem" }}>
-            {currUser.bio}
+            {currUser.result.bio}
           </TextTyprograhy>
         </Grid>
       </Grid>

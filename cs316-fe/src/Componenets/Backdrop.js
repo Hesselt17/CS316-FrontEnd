@@ -9,6 +9,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import ChipSelect from "./ChipSelect";
 
 const useStyles = makeStyles({
   PageStyle: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
   TitleStyle: {
     paddingTop: "2vh",
     paddingLeft: "2vw",
-    paddingRight: "4vw",
+    paddingRight: "30vw",
     color: "#005587",
     fontWeight: "500",
     display: "flex",
@@ -57,6 +58,7 @@ const useStyles = makeStyles({
     //padding: theme.spacing(0, 2),
     display: "flex",
     textAlign: "center",
+    alignItems: "center",
     justifyContent: "center",
   },
 });
@@ -83,13 +85,27 @@ const Backdrop = (props) => {
     return false;
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem("CurrentUser");
+    props.firebase.logout();
+  };
+
   return (
     <div>
       <Paper className={classes.PageStyle}>
-        <div style={{ display: "flex" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Typography variant="h3" className={classes.TitleStyle} noWrap>
             {props.page}
           </Typography>
+          {searchAndFilter && (
+            <ChipSelect selection={props.selection} isDesign={isDesign} />
+          )}
           <div className={classes.search}>
             {searchAndFilter && (
               <>
@@ -98,36 +114,13 @@ const Backdrop = (props) => {
                 </div>
                 <InputBase
                   placeholder="Search…"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
                   inputProps={{ "aria-label": "search" }}
                 />
               </>
             )}
           </div>
-          {searchAndFilter && (
-            <TextField
-              //TODO: SEARCH BAR -- https://medium.com/@pradityadhitama/simple-search-bar-component-functionality-in-react-6589fda3385d
-              className={classes.filter}
-              id="filled-select-currency"
-              //select
-              label="Select"
-              //value={currency}
-              //onChange={handleChange}
-              helperText="Select Filter(s)"
-              variant="filled"
-            >
-              {/*currencies.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))*/}
-            </TextField>
-          )}
           {props.firebase && (
-            <Button variant="contained" onClick={props.firebase.logout}>
+            <Button variant="contained" onClick={handleLogout}>
               Logout
             </Button>
           )}

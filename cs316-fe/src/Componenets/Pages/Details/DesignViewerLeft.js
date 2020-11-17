@@ -20,7 +20,10 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: "90%",
+    paddingTop: "2vh",
+    marginTop: "50px",
+    margin: "auto",
   },
   media: {
     height: 0,
@@ -54,7 +57,7 @@ const ViewerLeft = (props) => {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            H
+            {props.design.name.substring(0, 1)}
           </Avatar>
         }
         action={
@@ -62,13 +65,14 @@ const ViewerLeft = (props) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={props.design.caption}
+        subheader={props.design.dateposted}
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        image={props.design.photo}
+        title={props.design.caption}
+        controls
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -93,7 +97,7 @@ const ViewerLeft = (props) => {
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      {/*<Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Method:</Typography>
           <Typography paragraph>
@@ -123,7 +127,7 @@ const ViewerLeft = (props) => {
             serve.
           </Typography>
         </CardContent>
-      </Collapse>
+        </Collapse>*/}
     </Card>
   );
 };

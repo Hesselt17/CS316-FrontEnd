@@ -79,7 +79,7 @@ const Profile = (props) => {
                 >
                   My Uploads
                 </Typography>
-                <ProfileUploadLayout userID={props.auth.uid} />
+                <ProfileUploadLayout user={currUser} />
               </Paper>
             </Grid>
           </Grid>

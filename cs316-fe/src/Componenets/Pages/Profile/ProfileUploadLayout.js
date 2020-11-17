@@ -89,6 +89,7 @@ const ProfileUploadLayout = (props) => {
   const [uploads, setUploads] = useState([]);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({});
+  const currUser = JSON.parse(localStorage.getItem("CurrentUser")); //props.user;
 
   const handleOpen = (tile) => {
     setSelected(tile);
@@ -105,7 +106,7 @@ const ProfileUploadLayout = (props) => {
 
   const getUploads = () => {
     axiosAPI.designs
-      .getUserUploads(props.userID)
+      .getUserUploads(currUser.result.uid)
       .then((res) => {
         const data = res.data;
         setUploads(data.result);

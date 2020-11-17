@@ -64,6 +64,8 @@ function App() {
             const user = res.data;
             console.log("APP USER", user);
             setUsrProps(user);
+            localStorage.setItem("CurrentUser", JSON.stringify(user));
+            console.log(JSON.parse(localStorage.getItem("CurrentUser")));
           })
           .catch((err) => {
             console.log(err);
