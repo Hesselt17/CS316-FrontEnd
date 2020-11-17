@@ -1,5 +1,5 @@
 //TODO: Explore environment variables
-//import firebase from "firebase";
+
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
@@ -44,9 +44,9 @@ class Firebase {
     var imageRef = this.storageRef.child(`images/${file.name}`);
     imageRef.put(file).then(function (snapshot) {
       console.log("Uploaded a blob or file!");
-    });
-    imageRef.getDownloadURL().then(function (downloadURL) {
-      console.log("File available at", downloadURL);
+      imageRef.getDownloadURL().then(function (downloadURL) {
+        console.log("File available at", downloadURL);
+      });
     });
     //TODO: send to postgres
   };

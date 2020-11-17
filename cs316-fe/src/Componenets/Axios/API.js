@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosAPI = axios.create({
   //baseURL: "http://vcm-17053.vm.duke.edu:5000/", production
-  baseURL: "http://design-duke.herokuapp.com/", //deployment
+  baseURL: "https://design-duke.herokuapp.com/", //deployment
   timeout: 1000,
   responseType: "json",
 });
