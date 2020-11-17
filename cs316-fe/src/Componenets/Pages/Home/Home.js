@@ -1,53 +1,151 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Viewer } from "photo-sphere-viewer";
+import {
+  Button,
+  makeStyles,
+  Paper,
+  GridList,
+  GridListTile,
+  GridListTileBar,
+  IconButton,
+} from "@material-ui/core/";
+import InfoIcon from "@material-ui/icons/Info";
+import axiosAPI from "../../Axios/API";
 
-import image8 from "../../../Assets/TrinityHall.JPG";
-
-//src="https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/images%2FBlackwellDouble.JPG?alt=media&token=d53dfcb1-686d-4ec1-a791-4ca3785b3713"
+import Backdrop from "../../Backdrop"; //Different from Materail-UI's backdrop
+import ModalDesign from "../../ModalDesign";
 
 //TODO: Look into load order -- React Lifecycle
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+    backgroundColor: theme.palette.background.paper,
+  },
+  gridList: {
+    width: "100%",
+    height: "750px",
+    backgroundColor: "#F3F2F1", //#E2E6ED, #E5E5E5, #F3F2F1
+    alignItems: "center",
+    paddingTop: "3vh",
+  },
+  icon: {
+    color: "rgba(255, 255, 255, 0.54)",
+  },
+}));
 
-const Home = () => {
-  const photoRef = React.createRef(); // will only be called when the src prop gets updated
+const Home = (props) => {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState({});
+  const [designs, setDesigns] = useState([]);
 
   useEffect(() => {
-    /*
     const photoViewer = new Viewer({
-      container: "photoViewer", //photoRef.current,
-      panorama: image8,
-      navbar: ["fullscreen"],
-      //"https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/images%2FBlackwellDouble.JPG?alt=media&token=d53dfcb1-686d-4ec1-a791-4ca3785b3713",
+      container: "photoViewer",
+      panorama:
+        selected.photo ||
+        "https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/images%2FBlackwell%20Double.JPG?alt=media&token=837befd1-98b6-45ef-8347-cdcf07220c87", //image8,
+      navbar: ["fullscreen"], //https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/images%2FBlackwell%20Double.JPG?alt=media&token=837befd1-98b6-45ef-8347-cdcf07220c87
     });
-
-    // unmount component instructions
-
     return () => {
       photoViewer.destroy();
     };
-    */
-  }, [image8]);
+  }, [selected]); //insert photo name
+
+  useEffect(() => {
+    getImgs();
+  }, [props]);
+
+  const getImgs = () => {
+    axiosAPI.explore
+      .getExploreImages()
+      .then((res) => {
+        const data = res.data;
+        console.log("DATA", data.result);
+        setDesigns(data.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleOpen = (tile) => {
+    setSelected(tile);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
-      <div>Home</div>
       <div
         style={{
           overflow: "auto",
         }}
       >
-        {/*<iframe
-          title="stock"
-          width="50%"
-          height="500"
-          frameBorder="0"
-          src="https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/images%2FBlackwell%20Double.JPG?alt=media&token=837befd1-98b6-45ef-8347-cdcf07220c87"
-        />*/}
-        <div id="photoViewer" />
-        <iframe
-          width="50%"
-          height="500"
-          src="https://firebasestorage.googleapis.com/v0/b/designduke-94c81.appspot.com/o/images%2FBlackwell%20Double.JPG?alt=media&token=837befd1-98b6-45ef-8347-cdcf07220c87"
-        />
+        <div id="photoViewer" style={{ width: "50px", height: "80px" }} />
       </div>
+      <div>
+        <Backdrop page="Explore" selection={designs}>
+          <div className={classes.root}>
+            <GridList
+              cellHeight={250}
+              spacing={25}
+              className={classes.gridList}
+              cols={4}
+            >
+              {/*<GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
+          <ListSubheader component="div">December</ListSubheader>
+  </GridListTile>*/}
+              {designs.slice(0, 2).map((tile) => (
+                <GridListTile key={tile.designid}>
+                  {tile.typedesign === "room" && (
+                    <img
+                      src={tile.photo}
+                      alt={tile.uid}
+                      onClick={() => handleOpen(tile)}
+                    />
+                  )}
+                  {tile.typedesign === "diy" && (
+                    <video
+                      src={tile.photo}
+                      alt={tile.uid}
+                      //poster={tile.photo}
+                      onClick={() => handleOpen(tile)}
+                    />
+                  )}
+                  <GridListTileBar
+                    title={tile.caption}
+                    subtitle={<span>By: {tile.uid}</span>}
+                    onClick={() => handleOpen(tile)}
+                    actionIcon={
+                      <IconButton
+                        aria-label={`info about ${tile}`}
+                        className={classes.icon}
+                      >
+                        <InfoIcon />
+                      </IconButton>
+                    }
+                  />
+                </GridListTile>
+              ))}
+              <ModalDesign open={open} tile={selected} onClose={handleClose} />
+            </GridList>
+            {/*<video
+            src={designs[9]}
+            type="video/mp4"
+            style={{ width: "240px", height: "240px" }}
+            controls
+          ></video>*/}
+          </div>
+        </Backdrop>
+      </div>
+      ); };
     </div>
   );
 };

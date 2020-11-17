@@ -1,6 +1,5 @@
 import Setup from "./Setup/Setup";
 import Signup from "./Auth/Signup";
-import Login from "./Auth/Login";
 import Login2 from "./Auth/Login2";
 import Home from "./Home/Home";
 import Likes from "./Likes/Likes";
@@ -15,7 +14,6 @@ import CommunityDetails from "./Details/CommunityDetails";
 export {
   Setup,
   Signup,
-  Login,
   Login2,
   Home,
   Likes,
