@@ -66,7 +66,7 @@ const Upload = (props) => {
       <div>Upload</div>
       <Dropzone
         onDrop={handleDrop}
-        accept="image/*, video/*, .mov"
+        accept="image/*, video/*"
         minSize={1024}
         maxSize={3072000}
       >

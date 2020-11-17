@@ -64,12 +64,20 @@ const useStyles = makeStyles({
 const Backdrop = (props) => {
   const classes = useStyles();
   const [searchAndFilter, setSearchAndFilter] = useState(false);
+  const [isDesign, setIsDesign] = useState(false);
 
   useEffect(() => {
     setSearchAndFilter(renderSearchAndFilter());
+    setIsDesign(setTileType());
   }, []);
   function renderSearchAndFilter() {
     if (["Home", "Likes", "Explore", "Community"].indexOf(props.page) >= 0) {
+      return true;
+    }
+    return false;
+  }
+  function setTileType() {
+    if (["Home", "Likes", "Explore"].indexOf(props.page) >= 0) {
       return true;
     }
     return false;
