@@ -1,7 +1,13 @@
 import React from "react";
+import BackButton from "../../BackButton";
 
 const CommunityDetails = () => {
-  return <div>CommunityDetails</div>;
+  return (
+    <div>
+      <BackButton />
+      CommunityDetails
+    </div>
+  );
 };
 
 export default CommunityDetails;

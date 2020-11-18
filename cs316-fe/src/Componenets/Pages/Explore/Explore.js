@@ -84,7 +84,7 @@ const Explore = (props) => {
 
   return (
     <div>
-      <BackButton />
+      {!props.auth && <BackButton />}
       <Backdrop page="Explore" selection={designs}>
         <div className={classes.root}>
           <GridList

@@ -110,7 +110,7 @@ function App() {
             path="/explore"
             exact
             render={(props) => (
-              <Explore {...props} firebase={Firebase} /*auth={usrState}*/ />
+              <Explore {...props} firebase={Firebase} auth={usrToken.token} />
             )}
           />
           <Route path="/community" exact component={Community} />

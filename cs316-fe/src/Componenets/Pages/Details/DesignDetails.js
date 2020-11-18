@@ -6,6 +6,7 @@ import Backdrop from "../../Backdrop";
 import ViewerLeft from "./DesignViewerLeft";
 import InfoRight from "./DesignInfoRight";
 import DesignInfoRight from "./DesignInfoRight";
+import BackButton from "../../BackButton";
 
 import axiosAPI from "../../Axios/API";
 
@@ -46,6 +47,7 @@ const Details = (props) => {
 
   return (
     <div>
+      <BackButton />
       <Backdrop page="Details">
         <div
           style={{
