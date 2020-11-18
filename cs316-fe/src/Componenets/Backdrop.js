@@ -88,6 +88,7 @@ const Backdrop = (props) => {
   const handleLogout = () => {
     localStorage.removeItem("CurrentUser");
     props.firebase.logout();
+    props.history.push("/");
   };
 
   return (

@@ -81,7 +81,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        {usrProps && <Navbar usrState={usrToken.token} />}
+        {usrToken.token !== null && <Navbar usrState={usrToken.token} />}
         <Switch>
           <Route path="/" exact component={Setup} />
           <Route

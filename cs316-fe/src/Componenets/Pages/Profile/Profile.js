@@ -31,7 +31,11 @@ const Profile = (props) => {
   return (
     <div>
       {/*<ProfileMenu />*/}
-      <Backdrop page="Profile" firebase={props.firebase}>
+      <Backdrop
+        page="Profile"
+        firebase={props.firebase}
+        history={props.history}
+      >
         <div
           style={{
             width: "100%",

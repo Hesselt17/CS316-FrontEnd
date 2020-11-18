@@ -67,7 +67,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Setup = () => {
+const Setup = (props) => {
   const classes = useStyles();
 
   return (
