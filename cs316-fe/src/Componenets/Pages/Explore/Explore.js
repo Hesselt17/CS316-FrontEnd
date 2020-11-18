@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Button,
   makeStyles,
@@ -12,6 +13,7 @@ import InfoIcon from "@material-ui/icons/Info";
 
 import Backdrop from "../../Backdrop"; //Different from Materail-UI's backdrop
 import ModalDesign from "../../ModalDesign";
+import BackButton from "../../BackButton";
 
 import axiosAPI from "../../Axios/API";
 
@@ -82,6 +84,7 @@ const Explore = (props) => {
 
   return (
     <div>
+      <BackButton />
       <Backdrop page="Explore" selection={designs}>
         <div className={classes.root}>
           <GridList

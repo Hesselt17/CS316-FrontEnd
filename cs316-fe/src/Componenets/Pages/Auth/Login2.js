@@ -10,6 +10,8 @@ import {
   TextField,
 } from "@material-ui/core";
 
+import BackButton from "../../BackButton";
+
 const Button = styled.button`
   color: "#005587";
   padding: 0.8em;
@@ -133,6 +135,7 @@ const Login2 = (props) => {
 
   return (
     <div>
+      <BackButton />
       <Paper className={classes.PageStyle}>
         <div
           style={{

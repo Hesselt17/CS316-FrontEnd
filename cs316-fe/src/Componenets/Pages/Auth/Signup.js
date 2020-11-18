@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@material-ui/core";
 
-//import axios from "axios";
+import BackButton from "../../BackButton";
 
 const useStyles = makeStyles({
   PageStyle: {
@@ -175,6 +175,7 @@ const Signup = (props) => {
 
   return (
     <div>
+      <BackButton />
       <Grid container spacing={10} className={classes.OuterGridStyle}>
         <Grid item xs={6}>
           <Paper style={{ height: "75vh", color: "#E2E6ED" }}>
