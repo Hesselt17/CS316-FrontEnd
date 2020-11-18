@@ -110,11 +110,11 @@ const Setup = () => {
                   </Typography>
                 </Grid>
                 <Grid>
-                  <a href="/explore">
+                  <Link to="/explore">
                     <Button className={classes.Button}>
                       <Typography variant="h6">EXPLORE</Typography>
                     </Button>
-                  </a>
+                  </Link>
                 </Grid>
                 <Grid
                   container
@@ -124,18 +124,18 @@ const Setup = () => {
                   justify="center"
                 >
                   <Grid item xs={5}>
-                    <a href="/signup">
+                    <Link to="/signup">
                       <Button className={classes.Button}>
                         <Typography variant="h6">SIGN UP</Typography>
                       </Button>
-                    </a>
+                    </Link>
                   </Grid>
                   <Grid item xs={5}>
-                    <a href="/login">
+                    <Link to="/login">
                       <Button className={classes.Button}>
                         <Typography variant="h6">LOGIN</Typography>
                       </Button>
-                    </a>
+                    </Link>
                   </Grid>
                 </Grid>
               </Grid>

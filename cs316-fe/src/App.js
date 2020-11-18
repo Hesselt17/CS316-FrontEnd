@@ -103,11 +103,7 @@ function App() {
             path="/likes"
             exact
             render={(props) => (
-              <Likes
-                {...props}
-                firebase={Firebase}
-                auth={usrProps && usrProps}
-              /> //usrProps
+              <Likes {...props} firebase={Firebase} auth={usrProps} /> //usrProps
             )}
           />
           <Route

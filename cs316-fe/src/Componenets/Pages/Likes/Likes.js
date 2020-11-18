@@ -41,9 +41,13 @@ const Likes = (props) => {
   const [selected, setSelected] = useState({});
   const [likes, setLikes] = useState([]);
   const [userProps, setUserProps] = useState([]);
+  const currUser = props.auth;
+  if (localStorage.getItem("username") !== null) {
+    currUser = JSON.parse(localStorage.getItem("CurrentUser")).result;
+  }
 
   useEffect(() => {
-    setUserProps(JSON.parse(localStorage.getItem("CurrentUser")).result);
+    setUserProps(currUser);
     console.log(userProps.uid);
     axiosAPI.likes
       .getUserLikes(userProps.uid)
