@@ -41,6 +41,11 @@ const Home = (props) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState({});
   const [designs, setDesigns] = useState([]);
+  const [filters, setFilters] = useState([]);
+
+  useEffect(() => {
+    console.log(filters);
+  }, [filters]);
 
   useEffect(() => {
     const photoViewer = new Viewer({
@@ -91,7 +96,12 @@ const Home = (props) => {
         <div id="photoViewer" style={{ width: "50px", height: "80px" }} />
       </div>
       <div>
-        <Backdrop page="Home" selection={designs}>
+        <Backdrop
+          page="Home"
+          selection={designs}
+          filterer={setFilters}
+          currFilter={filters}
+        >
           <div className={classes.root}>
             <GridList
               cellHeight={250}
@@ -102,38 +112,76 @@ const Home = (props) => {
               {/*<GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
           <ListSubheader component="div">December</ListSubheader>
   </GridListTile>*/}
-              {designs.slice(0, 20).map((tile) => (
-                <GridListTile key={tile.designid}>
-                  {tile.typedesign === "room" && (
-                    <img
-                      src={tile.photo}
-                      alt={tile.uid}
+              {filters.length < 1 &&
+                designs.slice(0, 20).map((tile) => (
+                  <GridListTile key={tile.designid}>
+                    {tile.typedesign === "room" && (
+                      <img
+                        src={tile.photo}
+                        alt={tile.uid}
+                        onClick={() => handleOpen(tile)}
+                      />
+                    )}
+                    {tile.typedesign === "diy" && (
+                      <video
+                        src={tile.photo}
+                        alt={tile.uid}
+                        //poster={tile.photo}
+                        onClick={() => handleOpen(tile)}
+                      />
+                    )}
+                    <GridListTileBar
+                      title={tile.caption}
+                      subtitle={<span>By: {tile.uid}</span>}
                       onClick={() => handleOpen(tile)}
+                      actionIcon={
+                        <IconButton
+                          aria-label={`info about ${tile}`}
+                          className={classes.icon}
+                        >
+                          <InfoIcon />
+                        </IconButton>
+                      }
                     />
-                  )}
-                  {tile.typedesign === "diy" && (
-                    <video
-                      src={tile.photo}
-                      alt={tile.uid}
-                      //poster={tile.photo}
-                      onClick={() => handleOpen(tile)}
-                    />
-                  )}
-                  <GridListTileBar
-                    title={tile.caption}
-                    subtitle={<span>By: {tile.uid}</span>}
-                    onClick={() => handleOpen(tile)}
-                    actionIcon={
-                      <IconButton
-                        aria-label={`info about ${tile}`}
-                        className={classes.icon}
-                      >
-                        <InfoIcon />
-                      </IconButton>
-                    }
-                  />
-                </GridListTile>
-              ))}
+                  </GridListTile>
+                ))}
+              {filters.length >= 1 &&
+                designs
+                  .filter((tile) =>
+                    tile.style.some((style) => filters.includes(style))
+                  )
+                  .map((tile) => (
+                    <GridListTile key={tile.designid}>
+                      {tile.typedesign === "room" && (
+                        <img
+                          src={tile.photo}
+                          alt={tile.uid}
+                          onClick={() => handleOpen(tile)}
+                        />
+                      )}
+                      {tile.typedesign === "diy" && (
+                        <video
+                          src={tile.photo}
+                          alt={tile.uid}
+                          //poster={tile.photo}
+                          onClick={() => handleOpen(tile)}
+                        />
+                      )}
+                      <GridListTileBar
+                        title={tile.caption}
+                        subtitle={<span>By: {tile.uid}</span>}
+                        onClick={() => handleOpen(tile)}
+                        actionIcon={
+                          <IconButton
+                            aria-label={`info about ${tile}`}
+                            className={classes.icon}
+                          >
+                            <InfoIcon />
+                          </IconButton>
+                        }
+                      />
+                    </GridListTile>
+                  ))}
               <ModalDesign open={open} tile={selected} onClose={handleClose} />
             </GridList>
             {/*<video

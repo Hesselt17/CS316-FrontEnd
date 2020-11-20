@@ -62,5 +62,13 @@ export default {
     getDesignReviews(dID) {
       return axiosAPI.get(`reviews/${dID}`);
     },
+    postDesignReview(dID, userID, comment, rating) {
+      return axiosAPI.post(`reviews`, {
+        designid: dID,
+        uid: userID,
+        comment: comment,
+        rating: rating,
+      });
+    },
   },
 };
