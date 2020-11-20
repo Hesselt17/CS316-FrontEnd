@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Button } from "@material-ui/core/";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
@@ -13,16 +13,21 @@ import axiosAPI from "../../Axios/API";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    maxWidth: "36ch",
+    maxWidth: "36vw",
+    maxHeight: "40vh",
+    overflow: "auto",
     backgroundColor: theme.palette.background.paper,
   },
   inline: {
     display: "inline",
   },
+  text: {
+    color: "#005587",
+  },
 }));
 
 const DesignInfoRight = (props) => {
-  //const classes = useStyles();
+  const classes = useStyles();
   const [reviews, setReviews] = useState([]);
   const currUser = JSON.parse(localStorage.getItem("CurrentUser"));
 
@@ -52,22 +57,34 @@ const DesignInfoRight = (props) => {
           paddingTop: "2vh",
           color: "#005587",
         }}
-      >
-        {reviews.length}
-      </Typography>
-      {reviews.map((review) => {
-        <Typography
-          variant="h4"
-          key={review.uid}
-          style={{
-            paddingLeft: "1rem",
-            paddingTop: "2vh",
-            color: "#005587",
-          }}
-        >
-          Hey
-        </Typography>;
-      })}
+      ></Typography>
+      <List className={classes.root}>
+        {reviews.map((review) => (
+          <div>
+            <ListItem alignItems="flex-start">
+              <ListItemAvatar>
+                <Avatar alt="User" />
+              </ListItemAvatar>
+              <ListItemText
+                className={classes.text}
+                primary={`User: ${review.uid} -- Rating: ${review.rating}`}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      className={classes.inline}
+                      color="#005587"
+                    ></Typography>
+                    {`Comment: ${review.comment}`}
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+          </div>
+        ))}
+      </List>
     </div>
   );
 };

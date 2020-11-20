@@ -62,16 +62,18 @@ const ChipSelect = (props) => {
   useEffect(() => {
     console.log(props.selection);
     var designTypes = [];
-    for (var i = 0; i < props.selection.length; i++) {
-      for (var j = 0; j < props.selection[i].style.length; j++) {
-        const styleType = props.selection[i].style[j];
-        if (!designTypes.includes(styleType)) {
-          designTypes.push(styleType);
+    if (props.selection) {
+      for (var i = 0; i < props.selection.length; i++) {
+        for (var j = 0; j < props.selection[i].style.length; j++) {
+          const styleType = props.selection[i].style[j];
+          if (!designTypes.includes(styleType)) {
+            designTypes.push(styleType);
+          }
         }
       }
+      setFilters(designTypes);
+      setTiles(props.selection);
     }
-    setFilters(designTypes);
-    setTiles(props.selection);
     console.log(designTypes);
   }, [props]);
 
