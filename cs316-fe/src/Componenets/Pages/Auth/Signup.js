@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 
 import BackButton from "../../BackButton";
+import axiosAPI from "../../Axios/API";
 
 const useStyles = makeStyles({
   PageStyle: {
@@ -112,7 +113,6 @@ const Signup = (props) => {
       alert("Passwords do not match. Please try again");
     } else {
       alert("Success!");
-      props.history.push("/home");
       const { name, email, password } = textInput;
       props.firebase
         .register(email, password)
@@ -129,6 +129,19 @@ const Signup = (props) => {
         });
       event.preventDefault();
     }
+    //state2
+    const { name, email, password, netid } = textInput;
+    console.log("new user");
+    axiosAPI.users
+      .makeNewUser(email, name, netid, password)
+      .then((res) => {
+        const data = res.data;
+        console.log("new DATA", data.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    props.history.push("/home");
   };
 
   /*return (

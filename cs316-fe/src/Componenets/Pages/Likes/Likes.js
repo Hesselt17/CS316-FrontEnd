@@ -41,16 +41,16 @@ const Likes = (props) => {
   const [selected, setSelected] = useState({});
   const [likes, setLikes] = useState([]);
   const [userProps, setUserProps] = useState([]);
-  const currUser = props.auth;
-  if (localStorage.getItem("username") !== null) {
+  var currUser = props.auth;
+  if (localStorage.getItem("CurrentUser")) {
     currUser = JSON.parse(localStorage.getItem("CurrentUser")).result;
   }
 
   useEffect(() => {
     setUserProps(currUser);
-    console.log(userProps.uid);
+    console.log(currUser.uid);
     axiosAPI.likes
-      .getUserLikes(userProps.uid)
+      .getUserLikes(currUser.uid)
       .then((res) => {
         const data = res.data;
         console.log("DATA", data.result);
@@ -80,7 +80,7 @@ const Likes = (props) => {
             className={classes.gridList}
             cols={4}
           >
-            {likes.slice(0, 0).map((designs) => (
+            {likes.slice(0, 20).map((designs) => (
               <GridListTile key={designs.designid}>
                 <img
                   src={designs.avatar}

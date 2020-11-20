@@ -15,6 +15,18 @@ export default {
     getAllUsers() {
       return axiosAPI.get("users");
     },
+    makeNewUser(email, name, netid, password) {
+      return axiosAPI.post("users", {
+        avatar: "",
+        bio: "",
+        email: email,
+        name: name,
+        netid: netid,
+        password: password,
+        score: 0,
+        wherelive: "",
+      });
+    },
   },
   explore: {
     getAllImages() {

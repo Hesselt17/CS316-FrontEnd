@@ -37,19 +37,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
 function getStyles(name, selectedFilter, theme) {
   return {
     fontWeight:
@@ -70,13 +57,16 @@ const ChipSelect = (props) => {
   };
 
   useEffect(() => {
+    //var filterSet = new Set(props.selection);
+    //console.log(filterSet);
+    //setFilters(filterSet);
     setFilters(props.selection);
   });
 
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+        <InputLabel id="demo-mutiple-chip-label">Filter</InputLabel>
         <Select
           labelId="demo-mutiple-chip-label"
           id="demo-mutiple-chip"
@@ -93,7 +83,6 @@ const ChipSelect = (props) => {
           )}
           MenuProps={MenuProps}
         >
-          {console.log(filters)}
           {filters &&
             props.isDesign &&
             filters.map((filter) => (
