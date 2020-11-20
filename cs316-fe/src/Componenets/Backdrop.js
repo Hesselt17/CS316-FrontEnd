@@ -105,7 +105,12 @@ const Backdrop = (props) => {
             {props.page}
           </Typography>
           {searchAndFilter && (
-            <ChipSelect selection={props.selection} isDesign={isDesign} />
+            <ChipSelect
+              selection={props.selection}
+              isDesign={isDesign}
+              filterer={props.filterer}
+              currFilter={props.currFilter}
+            />
           )}
           <div className={classes.search}>
             {searchAndFilter && (

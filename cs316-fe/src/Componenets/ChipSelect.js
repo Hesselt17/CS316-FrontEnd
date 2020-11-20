@@ -50,18 +50,30 @@ const ChipSelect = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [selectedFilter, setSelectedFilter] = useState([]);
+  const [tiles, setTiles] = useState([]);
   const [filters, setFilters] = useState([]);
 
   const handleChange = (event) => {
-    setSelectedFilter(event.target.value);
+    const style = event.target.value;
+    setSelectedFilter(style);
+    props.filterer(style);
   };
 
   useEffect(() => {
-    //var filterSet = new Set(props.selection);
-    //console.log(filterSet);
-    //setFilters(filterSet);
-    setFilters(props.selection);
-  });
+    console.log(props.selection);
+    var designTypes = [];
+    for (var i = 0; i < props.selection.length; i++) {
+      for (var j = 0; j < props.selection[i].style.length; j++) {
+        const styleType = props.selection[i].style[j];
+        if (!designTypes.includes(styleType)) {
+          designTypes.push(styleType);
+        }
+      }
+    }
+    setFilters(designTypes);
+    setTiles(props.selection);
+    console.log(designTypes);
+  }, [props]);
 
   return (
     <div>
@@ -87,11 +99,11 @@ const ChipSelect = (props) => {
             props.isDesign &&
             filters.map((filter) => (
               <MenuItem
-                key={filter.designid}
-                value={filter.style[0]}
+                key={filter}
+                value={filter}
                 style={getStyles(filter, selectedFilter, theme)}
               >
-                {filter.style[0]}
+                {filter}
               </MenuItem>
             ))}
           {filters &&
